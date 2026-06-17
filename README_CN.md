@@ -145,6 +145,7 @@ tongji-study-space
 shen-ppt/
   SKILL.md
   README.md
+  README_CN.md
   LICENSE
   references/
     parameter-spec.md
