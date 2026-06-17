@@ -1,8 +1,8 @@
 <h1 align="center">Shen-PPT</h1>
 
 <p align="center">
-  <a href="README_CN.md">简体中文</a> |
-  <a href="README.md">默认主页</a>
+  <a href="README.md">English</a> |
+  <a href="README_CN.md">简体中文</a>
 </p>
 
 <p align="center">
