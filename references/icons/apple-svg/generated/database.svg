@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>数据 / database</title>
+  <g>
+    <ellipse cx="32" cy="17" rx="17" ry="7"/>
+    <path d="M15 17v28c0 4 8 7 17 7s17-3 17-7V17"/>
+    <path d="M15 31c0 4 8 7 17 7s17-3 17-7"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>结果 / chart</title>
+  <g>
+    <path d="M14 50h38"/>
+    <path d="M18 44V30"/>
+    <path d="M30 44V20"/>
+    <path d="M42 44V26"/>
+    <path d="M18 23 29 16l13 6 8-10"/>
+  </g>
+</svg>

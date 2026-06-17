@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>文档 / document</title>
+  <g>
+    <path d="M20 10h17l11 11v33H20z"/>
+    <path d="M37 10v12h11"/>
+    <path d="M26 32h18"/>
+    <path d="M26 40h18"/>
+    <path d="M26 48h11"/>
+  </g>
+</svg>

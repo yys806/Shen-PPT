@@ -539,12 +539,13 @@ The design lock must include:
 - template fill policy: if a template is locked, list the base PPTX path, the page/layout types to copy, and the objects to replace; explicitly state that the deck will fill/extend the template rather than recreate it
 - chosen visual direction or locked template, palette, and shape language
 - typography rules and font-size hierarchy
-- icon style: choose one consistent icon style for the whole deck; default to Lucide line icons through `presentations:Presentations` unless the user provides or approves a verified iconfont/local icon package
+- icon style: choose one consistent icon style for the whole deck; default to the built-in Shen-PPT Apple-style pure rounded SVG set at `references/icons/apple-svg/`; use Lucide only when the built-in set lacks a matching semantic icon or the user explicitly selects Lucide
 - icon role whitelist: icons are allowed only for section-divider title badges, evidence/image labels, process/step rows, metric labels, architecture/module labels, and conclusion/status cues. Directory pages, ordinary paragraphs, thank-you pages, plain subtitles, and decorative empty space do not get icons by default.
 - icon asset policy: icons must be semantic identifiers for sections, evidence labels, process steps, metrics, or conclusions; do not add random decorative icons just to fill space
 - icon placement policy: icons should sit directly to the left of the related title/text by default, tightly attached to that text; right-attached or below-centered icons are allowed only when the whole component family repeats that placement consistently
 - icon geometry policy: every icon role must use the fixed size, gap, color, and alignment from `references/parameter-spec.md`; do not resize icons slide-by-slide to "make it look right"
 - icon batch policy: within the same role or peer group, either every item has an icon or no item has an icon. Do not add isolated one-off icons to ordinary text blocks, summary panels, directory pages, or thank-you pages
+- icon color policy: for the built-in Apple-style SVG set, use the default `shen-blue #58C4D8` unless the locked style requires another single deck color. Regenerate the batch once with `scripts/generate-apple-svg-icons.py --color "#HEX" --color-name name`; do not create random per-slide colors.
 - icon provenance policy: if downloading icons from iconfont.cn or another web source, record the package/source, license/provenance, local asset path, color, size, and slide usage in an icon manifest before delivery
 - image policy: real assets first, editable diagrams second, local/partial AI assets only when useful
 - style reference policy: if a sample style from `references/style-samples-v2-20260606/` is selected, name the exact style slug and list any overrides; if no style sample is selected, state that the highest reference and `parameter-spec.md` govern the quality bar, while the deck's actual structure must come from the user's material and approved outline
@@ -633,13 +634,16 @@ Apply these constraints deck-wide unless the user explicitly approves a differen
 - Process pages need real visible arrows; horizontal process boxes place title/number on the left and explanation on the right, vertical process boxes place title above and explanation below
 - Peer cards, numbered steps, metric blocks, and summary items use uniform colors; do not randomly highlight one item
 - Use a unified semantic icon system by default: section-divider title icons, evidence-label icons, process-step icons, and metric-label icons should share one line style, stroke width, and color grammar
+- Use the built-in Shen-PPT Apple-style pure rounded SVG icon set by default. Load `references/icons/apple-svg/manifest.json` when selecting icons, and prefer generated SVG files from `references/icons/apple-svg/generated/`.
+- Let the deck generator use icons autonomously only when an icon adds semantic scanning value: section identity, evidence type, process step, architecture module, metric label, status cue, or key highlight. Do not add icons merely because there is empty space.
 - Use icons from the approved role whitelist only: section-divider title badge, evidence/image label, process/step row, metric label, architecture/module label, and conclusion/status cue
 - Directory pages use no icons by default; keep them to section numbers, titles, and concise descriptions
 - Icons should usually be left-attached to the related text. Right-attached or below-centered placement is allowed only when that placement is repeated across the whole component family
 - Icons must follow fixed geometry from `references/parameter-spec.md`: same-role icons use the same size, x/y offset, gap to text, color token, and vertical alignment across the whole deck
 - Same-role batches must be consistent: if one peer card, image label, process row, metric card, or section divider uses an icon, every peer in that batch uses the same icon treatment; otherwise remove icons from the whole batch
 - Avoid isolated decorative icons on summary panels, ordinary text blocks, thank-you pages, and one-off callouts
-- Do not mix icon libraries in one deck unless a verified brand/logo asset is required; generic icons default to Lucide line icons through `presentations:Presentations`
+- Do not mix icon libraries in one deck unless a verified brand/logo asset is required. Generic Shen-PPT icons default to the built-in Apple-style SVG set; Lucide is fallback only.
+- Do not use icon backgrounds, colored rounded squares, fake square marks, or button-like icon containers. The approved built-in style is pure colored line SVG with transparent background.
 - Icons must remain separate selectable objects when practical and must not be baked into full-slide images
 - Section divider pages use large `01`/`02` numbers aligned horizontally with the section title, with concise talking points rather than forced card grids
 - Thank-you pages are centered, no-card, no-frame, with the presenter line below the thanks text
@@ -811,6 +815,7 @@ Before delivery, verify:
 - final previews/contact sheet have been inspected against the accepted reference for overall density, hierarchy, and visual polish
 - icon role whitelist has been inspected: icons appear only in approved roles and never as filler decoration
 - icon usage has been inspected: one icon family, consistent stroke/color, semantic placement, no directory icons by default, no random decorative filler, no isolated one-off icons, and no unverified logo-like marks
+- built-in Apple-style SVG icon usage has been inspected when used: SVGs come from `references/icons/apple-svg/generated/`, use transparent backgrounds, share one deck color, and match semantic tags from `manifest.json`
 - icon geometry has been inspected: same-role icons share the exact locked size, gap, color token, alignment, and repeated placement from `references/parameter-spec.md`
 - icon placement has been inspected: icons are left-attached to the related title/text by default, or right/below placement is repeated consistently across the whole component family
 - icon batch consistency has been inspected: same-role peer groups either all have icons or all omit icons

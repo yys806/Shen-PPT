@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>汇报 / presentation</title>
+  <g>
+    <rect x="12" y="14" width="40" height="30" rx="11"/>
+    <path d="M20 52h24"/>
+    <path d="M32 44v8"/>
+    <path d="M22 34 30 27l6 5 8-10"/>
+  </g>
+</svg>

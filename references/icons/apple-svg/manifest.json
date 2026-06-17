@@ -1,0 +1,198 @@
+{
+  "style": "apple-like pure rounded line icons",
+  "size": 64,
+  "stroke": 3.4,
+  "defaultColor": {
+    "name": "shen-blue",
+    "hex": "#58C4D8"
+  },
+  "rules": [
+    "Use semantic icons only.",
+    "Use one requested color per generated batch.",
+    "Regenerate color variants by running the script with --color and --color-name.",
+    "Do not use filled square pseudo-icons.",
+    "Insert SVGs as independent PPT objects."
+  ],
+  "icons": {
+    "target": {
+      "label": "目标",
+      "tags": [
+        "目标",
+        "检测",
+        "跟踪"
+      ],
+      "path": "generated/target.svg"
+    },
+    "code": {
+      "label": "代码",
+      "tags": [
+        "代码",
+        "实现",
+        "模块"
+      ],
+      "path": "generated/code.svg"
+    },
+    "cpu": {
+      "label": "硬件",
+      "tags": [
+        "硬件",
+        "计算",
+        "嵌入式"
+      ],
+      "path": "generated/cpu.svg"
+    },
+    "database": {
+      "label": "数据",
+      "tags": [
+        "数据",
+        "存储",
+        "样本"
+      ],
+      "path": "generated/database.svg"
+    },
+    "network": {
+      "label": "网络",
+      "tags": [
+        "网络",
+        "连接",
+        "通信"
+      ],
+      "path": "generated/network.svg"
+    },
+    "chart": {
+      "label": "结果",
+      "tags": [
+        "结果",
+        "指标",
+        "统计"
+      ],
+      "path": "generated/chart.svg"
+    },
+    "camera": {
+      "label": "视觉",
+      "tags": [
+        "视觉",
+        "图像",
+        "相机"
+      ],
+      "path": "generated/camera.svg"
+    },
+    "experiment": {
+      "label": "实验",
+      "tags": [
+        "实验",
+        "验证",
+        "测试"
+      ],
+      "path": "generated/experiment.svg"
+    },
+    "route": {
+      "label": "流程",
+      "tags": [
+        "流程",
+        "路径",
+        "步骤"
+      ],
+      "path": "generated/route.svg"
+    },
+    "shield": {
+      "label": "稳定",
+      "tags": [
+        "安全",
+        "稳定",
+        "保护"
+      ],
+      "path": "generated/shield.svg"
+    },
+    "terminal": {
+      "label": "终端",
+      "tags": [
+        "终端",
+        "命令",
+        "运行"
+      ],
+      "path": "generated/terminal.svg"
+    },
+    "document": {
+      "label": "文档",
+      "tags": [
+        "文档",
+        "报告",
+        "材料"
+      ],
+      "path": "generated/document.svg"
+    },
+    "presentation": {
+      "label": "汇报",
+      "tags": [
+        "汇报",
+        "展示",
+        "答辩"
+      ],
+      "path": "generated/presentation.svg"
+    },
+    "team": {
+      "label": "团队",
+      "tags": [
+        "团队",
+        "成员",
+        "协作"
+      ],
+      "path": "generated/team.svg"
+    },
+    "cloud": {
+      "label": "云端",
+      "tags": [
+        "云端",
+        "服务",
+        "部署"
+      ],
+      "path": "generated/cloud.svg"
+    },
+    "robot": {
+      "label": "机器人",
+      "tags": [
+        "机器人",
+        "智能",
+        "自动化"
+      ],
+      "path": "generated/robot.svg"
+    },
+    "device": {
+      "label": "设备",
+      "tags": [
+        "设备",
+        "实物",
+        "硬件"
+      ],
+      "path": "generated/device.svg"
+    },
+    "layers": {
+      "label": "分层",
+      "tags": [
+        "架构",
+        "分层",
+        "模块"
+      ],
+      "path": "generated/layers.svg"
+    },
+    "algorithm": {
+      "label": "算法",
+      "tags": [
+        "算法",
+        "模型",
+        "推理"
+      ],
+      "path": "generated/algorithm.svg"
+    },
+    "spark": {
+      "label": "亮点",
+      "tags": [
+        "亮点",
+        "创新",
+        "重点"
+      ],
+      "path": "generated/spark.svg"
+    }
+  }
+}

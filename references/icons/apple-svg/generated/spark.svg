@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>亮点 / spark</title>
+  <g>
+    <path d="M32 9 36 25 52 29 36 35 32 55 28 35 12 29 28 25 32 9Z"/>
+    <path d="M50 11v10"/>
+    <path d="M45 16h10"/>
+  </g>
+</svg>

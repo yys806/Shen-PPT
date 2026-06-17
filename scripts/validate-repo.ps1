@@ -30,6 +30,8 @@ $references = Join-Path $rootItem.FullName 'references'
 $sampleRoot = Join-Path $references 'style-samples-v2-20260606'
 $sampleDecks = Join-Path $sampleRoot 'sample-decks'
 $highest = Join-Path $references 'highest-references\orangepi-defense-final-v9-20260607'
+$iconRoot = Join-Path $references 'icons\apple-svg'
+$iconGenerated = Join-Path $iconRoot 'generated'
 
 Assert-Path (Join-Path $rootItem.FullName 'SKILL.md') 'Missing SKILL.md'
 Assert-Path (Join-Path $rootItem.FullName 'README.md') 'Missing README.md'
@@ -44,6 +46,12 @@ Assert-Path $highest 'Missing highest reference directory'
 Assert-Path (Join-Path $highest 'reference.pptx') 'Missing highest reference PPTX'
 Assert-Path (Join-Path $highest 'contact-sheet.png') 'Missing highest reference contact sheet'
 Assert-Path (Join-Path $highest 'accepted-standard.md') 'Missing highest reference accepted-standard.md'
+Assert-Path (Join-Path $rootItem.FullName 'scripts\generate-apple-svg-icons.py') 'Missing Apple-style SVG icon generator'
+Assert-Path $iconRoot 'Missing Apple-style SVG icon root'
+Assert-Path $iconGenerated 'Missing generated Apple-style SVG icon directory'
+Assert-Path (Join-Path $iconRoot 'manifest.json') 'Missing Apple-style SVG icon manifest'
+Assert-Path (Join-Path $iconRoot 'contact-sheet.png') 'Missing Apple-style SVG icon contact sheet'
+Assert-Path (Join-Path $iconRoot 'preview.html') 'Missing Apple-style SVG icon preview'
 
 $topLevelReferenceFiles = Get-ChildItem -LiteralPath $rootItem.FullName -File |
   Where-Object { $_.Extension -in @('.pptx', '.png') -or $_.Name -eq 'parameter-spec.md' }
@@ -87,5 +95,22 @@ foreach ($slug in $expectedSlugs) {
 }
 
 Assert-Count (($resolved | Sort-Object -Unique).Count) 15 'Sample deck map should resolve to 15 unique PPTX files.'
+
+$iconManifest = Get-Content -LiteralPath (Join-Path $iconRoot 'manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$iconNames = @($iconManifest.icons.PSObject.Properties | Select-Object -ExpandProperty Name)
+Assert-Count $iconNames.Count 20 'Wrong number of built-in Apple-style SVG icons.'
+
+foreach ($iconName in $iconNames) {
+  $iconPath = $iconManifest.icons.$iconName.path
+  if (-not $iconPath) {
+    throw "Missing SVG path in Apple-style icon manifest for icon: $iconName"
+  }
+  $fullIconPath = Join-Path $iconRoot $iconPath
+  Assert-Path $fullIconPath "Missing generated Apple-style SVG icon: $iconName"
+  $svgText = Get-Content -LiteralPath $fullIconPath -Raw -Encoding UTF8
+  if ($svgText -match '<rect[^>]+fill="currentColor"') {
+    throw "Apple-style SVG icon must not include a colored background rectangle: $iconName"
+  }
+}
 
 Write-Host 'Shen-PPT repository validation passed.'

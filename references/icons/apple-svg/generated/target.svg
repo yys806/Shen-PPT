@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>目标 / target</title>
+  <g>
+    <circle cx="32" cy="32" r="17"/>
+    <circle cx="32" cy="32" r="7"/>
+    <path d="M32 8v8"/>
+    <path d="M32 48v8"/>
+    <path d="M8 32h8"/>
+    <path d="M48 32h8"/>
+  </g>
+</svg>

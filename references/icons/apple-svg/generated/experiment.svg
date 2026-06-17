@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>实验 / experiment</title>
+  <g>
+    <path d="M25 11h14"/>
+    <path d="M29 11v15L17 47c-2 4 1 7 5 7h20c4 0 7-3 5-7L35 26V11"/>
+    <path d="M22 42h20"/>
+    <path d="M25 48h14"/>
+  </g>
+</svg>

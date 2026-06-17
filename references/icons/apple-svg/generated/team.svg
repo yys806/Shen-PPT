@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>团队 / team</title>
+  <g>
+    <circle cx="32" cy="23" r="7"/>
+    <path d="M20 52c2-9 7-14 12-14s10 5 12 14"/>
+    <circle cx="17" cy="29" r="5"/>
+    <path d="M8 50c2-7 5-11 10-12"/>
+    <circle cx="47" cy="29" r="5"/>
+    <path d="M56 50c-2-7-5-11-10-12"/>
+  </g>
+</svg>

@@ -221,12 +221,61 @@ No card or frame around presenter/closing information.
 
 ### Icon System
 
-Default academic/engineering decks should include a restrained icon system. Use one coherent line-icon family across the whole deck; the default is Lucide unless the user selects a verified local iconfont package or another consistent library. Icons are governed components, not decoration.
+Default academic/engineering decks should include a restrained icon system. Use one coherent line-icon family across the whole deck. The default Shen-PPT icon family is the built-in Apple-style pure rounded SVG set at `references/icons/apple-svg/`; use Lucide only when a required semantic icon is missing from the built-in set or when the user explicitly selects Lucide. Icons are governed components, not decoration.
+
+Built-in Apple-style SVG icon lock:
+
+| Token | Value |
+|---|---|
+| asset root | `references/icons/apple-svg/` |
+| generator | `scripts/generate-apple-svg-icons.py` |
+| manifest | `references/icons/apple-svg/manifest.json` |
+| preview | `references/icons/apple-svg/contact-sheet.png` |
+| generated SVGs | `references/icons/apple-svg/generated/*.svg` |
+| default style | pure rounded line SVG, no background fill |
+| default color | `shen-blue` / `#58C4D8` |
+| default SVG size | `64x64` viewBox |
+| default stroke | `3.4` |
+| default PPT insertion | independent SVG image/vector object, not a full-slide raster |
+
+To regenerate the icon batch in another deck color, run:
+
+```powershell
+python scripts/generate-apple-svg-icons.py --color "#005BAC" --color-name tongji-blue
+```
+
+The generator intentionally writes stable filenames such as `target.svg`, `code.svg`, and `chart.svg`. Do not create per-slide random filenames; stable names make PPT generation deterministic.
+
+Built-in icon semantic map:
+
+| Icon | Use For |
+|---|---|
+| `target` | target, detection, tracking |
+| `code` | code, implementation, module |
+| `cpu` | hardware, compute, embedded device |
+| `database` | data, storage, dataset |
+| `network` | network, connection, communication |
+| `chart` | result, metric, statistics |
+| `camera` | vision, image, camera |
+| `experiment` | experiment, validation, testing |
+| `route` | process, path, steps |
+| `shield` | safety, stability, protection |
+| `terminal` | terminal, command, runtime |
+| `document` | report, document, material |
+| `presentation` | presentation, defense, display |
+| `team` | team, members, collaboration |
+| `cloud` | cloud, service, deployment |
+| `robot` | robot, intelligence, automation |
+| `device` | device, physical object, hardware |
+| `layers` | architecture, layers, modules |
+| `algorithm` | algorithm, model, inference |
+| `spark` | highlight, innovation, key point |
 
 | Role | Default |
 |---|---|
-| icon family | Lucide line icons |
-| stroke width | `1.9` |
+| icon family | Shen-PPT Apple-style pure rounded SVG |
+| fallback family | Lucide line icons only when built-in semantic icon is missing |
+| stroke width | `3.4` for source SVG; scale visually by size in PPT |
 | primary icon color | `blue` |
 | emphasis icon color | `amber` |
 | neutral icon color | `muted` |
@@ -267,8 +316,11 @@ Rules:
 - avoid isolated one-off icons on body slides, summary panels, thank-you pages, and ordinary text blocks
 - do not mix multiple icon styles in one deck
 - do not use unofficial brand/logo-like icons, mascot marks, app icons, or school logos as generic decoration
+- do not add icon backgrounds, rounded-square fills, color blocks, or button-like containers unless the locked template already uses that component family and the user approves it
+- prefer the built-in Apple-style SVG set for Shen-PPT-generated decks; use stable manifest names and semantic tags to select icons
+- when using a non-default color, regenerate the built-in SVG batch once for the deck color and record the color name/hex in the design lock and asset manifest
 - if downloading icons from iconfont.cn or another site, record source package, license/provenance, local asset path, color, size, and slide usage in an icon manifest
-- if no verified external icon package is selected, use the built-in Lucide support from `presentations:Presentations`
+- if no built-in, verified external, or Lucide icon fits the meaning, omit the icon instead of inventing a pseudo-icon
 - keep icons independently selectable as separate image/vector-like objects when practical; never bake them into full-slide screenshots
 - if an icon makes a dense slide crowded, remove the icon before shrinking proof images or source text
 - if an icon has no clear semantic label or cannot be applied consistently to the whole peer group, omit it

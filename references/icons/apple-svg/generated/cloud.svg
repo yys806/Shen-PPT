@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" color="#58C4D8" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>云端 / cloud</title>
+  <g>
+    <path d="M23 47h24c7 0 11-4 11-10 0-5-4-9-9-10-2-8-8-13-17-13-8 0-14 5-17 12-6 1-10 5-10 11 0 6 5 10 18 10Z"/>
+    <path d="M25 36h14"/>
+    <path d="m34 31 5 5-5 5"/>
+  </g>
+</svg>
