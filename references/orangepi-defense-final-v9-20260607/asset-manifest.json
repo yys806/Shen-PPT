@@ -1,0 +1,86 @@
+﻿[
+    {
+        "slide":  1,
+        "asset":  "cover illustration",
+        "source":  "AI/local illustration embedded in deck",
+        "usage":  "cover right visual",
+        "policy":  "independent image object, not full-slide background"
+    },
+    {
+        "slide":  7,
+        "asset":  "wiring_real",
+        "source":  "D:\\禹尧珅\\人工智能知识库\\大三下\\综B\\大作业\\报告\\orange_pi_tracker_report\\figures\\wiring_real.png",
+        "usage":  "actual wiring photo",
+        "policy":  "contain, complete image"
+    },
+    {
+        "slide":  7,
+        "asset":  "step02_hardware_check",
+        "source":  "D:\\禹尧珅\\人工智能知识库\\大三下\\综B\\大作业\\报告\\orange_pi_tracker_report\\figures\\step02_hardware_check.png",
+        "usage":  "hardware check terminal",
+        "policy":  "contain, complete screenshot"
+    },
+    {
+        "slide":  8,
+        "asset":  "ethernet_diagram",
+        "source":  "D:\\禹尧珅\\人工智能知识库\\大三下\\综B\\大作业\\报告\\orange_pi_tracker_report\\figures\\ethernet_diagram.jpg",
+        "usage":  "network connection diagram",
+        "policy":  "contain, complete image"
+    },
+    {
+        "slide":  8,
+        "asset":  "network_share_pc/network_board/ssh_connection",
+        "source":  "report figures directory",
+        "usage":  "network configuration evidence",
+        "policy":  "contain, complete screenshots"
+    },
+    {
+        "slide":  11,
+        "asset":  "step04_web_real and terminal",
+        "source":  "report figures directory",
+        "usage":  "web console real tracking evidence",
+        "policy":  "contain, complete screenshots"
+    },
+    {
+        "slide":  12,
+        "asset":  "step04_web_real/gimbal_angle_curve",
+        "source":  "report figures directory",
+        "usage":  "tracking frame and control curve",
+        "policy":  "contain, complete image/chart"
+    },
+    {
+        "slide":  15,
+        "asset":  "step05/06/07 terminal screenshots",
+        "source":  "report figures directory",
+        "usage":  "bonus experiments terminal evidence",
+        "policy":  "contain, complete screenshots"
+    },
+    {
+        "slide":  17,
+        "asset":  "fps_curve/target_found_curve",
+        "source":  "report figures directory",
+        "usage":  "tracking result chart",
+        "policy":  "contain, complete chart"
+    },
+    {
+        "slide":  18,
+        "asset":  "center_error_curve/gimbal_angle_curve/fps_curve/analysis_terminal",
+        "source":  "report figures directory",
+        "usage":  "log analysis curves",
+        "policy":  "contain, complete charts"
+    },
+    {
+        "slide":  19,
+        "asset":  "step05_cpp_benchmark/step06_pymp_benchmark",
+        "source":  "report figures directory and report table",
+        "usage":  "performance comparison evidence",
+        "policy":  "contain, complete screenshots"
+    },
+    {
+        "slide":  21,
+        "asset":  "step07_cloud_1/step07_cloud_2",
+        "source":  "report figures directory",
+        "usage":  "mock cloud upload evidence",
+        "policy":  "contain, complete screenshots"
+    }
+]

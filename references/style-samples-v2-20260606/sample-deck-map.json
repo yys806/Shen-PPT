@@ -1,0 +1,25 @@
+{
+  "general": {
+    "academic-minimal": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_academic-minimal.pptx",
+    "business-roadshow": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_business-roadshow.pptx",
+    "chinese-academic": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_chinese-academic.pptx",
+    "dark-engineering": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_dark-engineering.pptx",
+    "data-analytics": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_data-analytics.pptx",
+    "education-clean": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_education-clean.pptx",
+    "research-blue": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_research-blue.pptx",
+    "tech-launch": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_tech-launch.pptx"
+  },
+  "tongji": {
+    "tongji-blue-clean": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-blue-clean.pptx",
+    "tongji-green-academic": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-green-academic.pptx",
+    "tongji-green-vitality": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-green-vitality.pptx",
+    "tongji-guangying": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-guangying.pptx",
+    "tongji-guangying-jiyi": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-guangying-jiyi.pptx",
+    "tongji-sakura": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-sakura.pptx",
+    "tongji-study-space": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-study-space.pptx"
+  },
+  "overviews": {
+    "general": "references/style-samples-v2-20260606/sample-decks/style-samples-v2-general-overview.png",
+    "tongji": "references/style-samples-v2-20260606/sample-decks/style-samples-v2-tongji-overview.png"
+  }
+}

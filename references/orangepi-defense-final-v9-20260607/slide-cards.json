@@ -1,0 +1,222 @@
+﻿[
+    {
+        "index":  1,
+        "purpose":  "建立课程答辩主题和项目总体印象",
+        "claim":  "本项目围绕 OrangePi 板端目标跟踪云台完成软硬件一体化实现",
+        "sourceEvidence":  "README 指标摘要与报告结果表",
+        "layoutFamily":  "cover",
+        "visualAsset":  "AI/local cover illustration; report metrics",
+        "speakerNote":  "开场先交代课程、项目名称和系统目标，再用四个指标说明后面会展开证据",
+        "qaRisk":  "封面指标要与报告保持一致"
+    },
+    {
+        "index":  2,
+        "purpose":  "给老师建立答辩路线",
+        "claim":  "全篇按背景要求、硬件网络、软件控制、运行证据、结果加分、总结优化展开",
+        "sourceEvidence":  "最终 PPT 章节结构",
+        "layoutFamily":  "directory",
+        "visualAsset":  "none",
+        "speakerNote":  "目录页只做路线说明，强调后面每一章都对应真实材料或运行证据",
+        "qaRisk":  "目录标题必须和导航标签一致"
+    },
+    {
+        "index":  3,
+        "purpose":  "进入第一章并概括要点",
+        "claim":  "选题由课程要求和现场演示稳定性共同决定",
+        "sourceEvidence":  "大作业要求 docx、报告项目背景",
+        "layoutFamily":  "section divider",
+        "visualAsset":  "section icon",
+        "speakerNote":  "说明为什么不用复杂模型做主线，而是先保证板端实时运行和稳定演示",
+        "qaRisk":  "章节页不要堆过多正文"
+    },
+    {
+        "index":  4,
+        "purpose":  "解释项目为什么做和做什么",
+        "claim":  "云台跟踪任务能够覆盖开发板、视觉、外设控制和网络调试等课程核心要求",
+        "sourceEvidence":  "大作业要求与报告第 1 章",
+        "layoutFamily":  "comparison matrix",
+        "visualAsset":  "requirement extraction cards",
+        "speakerNote":  "先讲课程难点，再讲本项目为什么能覆盖这些要求，最后说明 HSV 路线取舍",
+        "qaRisk":  "左侧正文较多，需要保持老师可读"
+    },
+    {
+        "index":  5,
+        "purpose":  "逐项对照课程要求和完成情况",
+        "claim":  "主线任务和加分项都有对应证据支撑",
+        "sourceEvidence":  "要求文件、终端截图、报告加分实验",
+        "layoutFamily":  "comparison matrix",
+        "visualAsset":  "requirement completion table",
+        "speakerNote":  "逐行强调完成项与证据类型，不要只说“完成了”，要指向后续页面的截图和表格",
+        "qaRisk":  "六项内容密集，颜色和状态标记必须统一"
+    },
+    {
+        "index":  6,
+        "purpose":  "进入硬件网络章节",
+        "claim":  "真实系统由硬件链路、网络链路和调试入口共同保证",
+        "sourceEvidence":  "接线图、网络截图、SSH 截图",
+        "layoutFamily":  "section divider",
+        "visualAsset":  "section icon",
+        "speakerNote":  "承接课程要求，说明第二章会用实物图和网络截图证明系统搭起来了",
+        "qaRisk":  "章节概括保持简短"
+    },
+    {
+        "index":  7,
+        "purpose":  "证明硬件真实接线和外设识别",
+        "claim":  "OrangePi、摄像头、PCA9685、舵机和供电链路已经实际连通",
+        "sourceEvidence":  "wiring_real、step02_hardware_check、I2C scan",
+        "layoutFamily":  "evidence split",
+        "visualAsset":  "实际接线图、硬件检查终端",
+        "speakerNote":  "按主控、摄像头、驱动板、舵机、电源顺序讲，最后指出 I2C 地址证明 PCA9685 被识别",
+        "qaRisk":  "实物图和终端图要完整显示"
+    },
+    {
+        "index":  8,
+        "purpose":  "证明网络共享和远程调试链路",
+        "claim":  "电脑和 OrangePi 通过有线连接与网络共享形成稳定调试链路",
+        "sourceEvidence":  "ethernet_diagram、network_share_pc、network_board、ssh_connection",
+        "layoutFamily":  "evidence grid",
+        "visualAsset":  "网络示意图和系统截图",
+        "speakerNote":  "说明为什么采用 Wi-Fi 上网加有线直连，强调 SSH 和网页推流都走稳定链路",
+        "qaRisk":  "多图页需避免图片过小"
+    },
+    {
+        "index":  9,
+        "purpose":  "进入软件实现章节",
+        "claim":  "软件实现按采集、检测、控制、网页和驱动逐步打通",
+        "sourceEvidence":  "README 和 src/orangepi_tracker 模块",
+        "layoutFamily":  "section divider",
+        "visualAsset":  "section icon",
+        "speakerNote":  "先给出实现顺序，后面再分别用模块关系、网页画面和控制流程展开",
+        "qaRisk":  "不要把章节页讲成正文页"
+    },
+    {
+        "index":  10,
+        "purpose":  "说明代码模块如何协同",
+        "claim":  "摄像头帧经过检测、状态判断和控制器后转为 PWM 输出",
+        "sourceEvidence":  "camera.py、tracker.py、state_machine.py、control.py、hardware.py",
+        "layoutFamily":  "process flow",
+        "visualAsset":  "editable process flow and module table",
+        "speakerNote":  "按流程箭头讲，从输入帧到舵机输出，强调每个模块在代码中的职责",
+        "qaRisk":  "流程箭头必须清楚"
+    },
+    {
+        "index":  11,
+        "purpose":  "展示网页控制台作为演示入口",
+        "claim":  "网页控制台把实时画面、标定、跟踪和急停复位集中到浏览器",
+        "sourceEvidence":  "step04_web_real、step04_real_terminal",
+        "layoutFamily":  "evidence split",
+        "visualAsset":  "网页截图和真实模式终端",
+        "speakerNote":  "讲现场操作顺序：打开网页、中心标定、开始跟踪、急停复位",
+        "qaRisk":  "网页截图内容需足够大"
+    },
+    {
+        "index":  12,
+        "purpose":  "解释视觉检测到控制执行的闭环",
+        "claim":  "HSV 分割、形态学处理、候选筛选和控制策略共同提升稳定性",
+        "sourceEvidence":  "tracker.py、control.py、gimbal_angle_curve、web real screenshot",
+        "layoutFamily":  "process flow",
+        "visualAsset":  "流程步骤、真实跟踪画面、角度曲线",
+        "speakerNote":  "先讲检测流程，再讲控制策略，最后指出死区、限幅和平滑用于减少抖动",
+        "qaRisk":  "流程行和箭头不能拥挤"
+    },
+    {
+        "index":  13,
+        "purpose":  "进入运行证据章节",
+        "claim":  "一键脚本和终端截图让系统运行过程可复查",
+        "sourceEvidence":  "docs/TEST_COMMANDS.md 和终端截图",
+        "layoutFamily":  "section divider",
+        "visualAsset":  "section icon",
+        "speakerNote":  "强调第四章不是描述想法，而是展示实际命令和实际输出",
+        "qaRisk":  "章节页文字保持精炼"
+    },
+    {
+        "index":  14,
+        "purpose":  "说明脚本化验证顺序",
+        "claim":  "8 个脚本覆盖从环境检查到日志分析的完整验证链路",
+        "sourceEvidence":  "scripts/run/* 和 TEST_COMMANDS.md",
+        "layoutFamily":  "process flow",
+        "visualAsset":  "terminal screenshots and step cards",
+        "speakerNote":  "按 01 到 08 讲执行顺序，强调先模拟再真实，最后分析日志",
+        "qaRisk":  "截图标签需要可读"
+    },
+    {
+        "index":  15,
+        "purpose":  "集中展示加分项终端证据",
+        "claim":  "C++ wheel、pymp 和 mock 云端上传都有真实终端输出证明",
+        "sourceEvidence":  "step05_cpp_benchmark、step06_pymp_benchmark、step07_cloud_*",
+        "layoutFamily":  "evidence grid",
+        "visualAsset":  "terminal screenshots",
+        "speakerNote":  "不要逐字读终端，只指出命令、关键输出和它对应的加分项",
+        "qaRisk":  "避免出现“这一页”之类内部提示"
+    },
+    {
+        "index":  16,
+        "purpose":  "进入结果和加分实验章节",
+        "claim":  "跟踪指标、性能对比和云端上传构成结果评价主体",
+        "sourceEvidence":  "报告第 5 章",
+        "layoutFamily":  "section divider",
+        "visualAsset":  "section icon",
+        "speakerNote":  "说明第五章会用数字、曲线和 benchmark 对结果做收口",
+        "qaRisk":  "章节页避免过度展开"
+    },
+    {
+        "index":  17,
+        "purpose":  "展示代表运行核心指标",
+        "claim":  "代表运行可达到 23 FPS 量级并保留误差、找到率和重捕获指标",
+        "sourceEvidence":  "报告 20260524_013921 指标表",
+        "layoutFamily":  "results dominant",
+        "visualAsset":  "FPS curve, target_found curve, metric table",
+        "speakerNote":  "先说明代表运行编号，再讲 FPS、误差、目标找到率和重捕获时间的含义",
+        "qaRisk":  "36.80% 找到率需解释为调试过程数据"
+    },
+    {
+        "index":  18,
+        "purpose":  "用曲线解释跟踪过程",
+        "claim":  "误差、角度、FPS 和检测状态曲线可以复查运行过程中的稳定性和异常",
+        "sourceEvidence":  "center_error_curve、gimbal_angle_curve、fps_curve、target_found_curve",
+        "layoutFamily":  "results dominant",
+        "visualAsset":  "four analysis curves and terminal",
+        "speakerNote":  "重点说明尖峰来源和日志复查价值，避免把曲线讲成绝对完美",
+        "qaRisk":  "长句需要分行"
+    },
+    {
+        "index":  19,
+        "purpose":  "展示性能加分实验",
+        "claim":  "C++ wheel 相比纯 Python 明显加速，同时 OpenCV 仍是最快后端",
+        "sourceEvidence":  "morphology benchmark table and terminal screenshots",
+        "layoutFamily":  "comparison matrix",
+        "visualAsset":  "benchmark screenshots and performance table",
+        "speakerNote":  "讲清楚 C++ wheel 的价值是工程链路跑通和相对 Python 加速，不要说它超过 OpenCV",
+        "qaRisk":  "实验判断文字需要分行"
+    },
+    {
+        "index":  20,
+        "purpose":  "进入总结章节",
+        "claim":  "项目主线完成，但识别鲁棒性和云端接口仍有后续空间",
+        "sourceEvidence":  "README 完成情况和报告总结",
+        "layoutFamily":  "section divider",
+        "visualAsset":  "section icon",
+        "speakerNote":  "用完成内容、结果边界和改进方向三句话收束",
+        "qaRisk":  "不要再展开新证据"
+    },
+    {
+        "index":  21,
+        "purpose":  "总结云端上传和最终完成情况",
+        "claim":  "mock 云端上传证明网络加分链路跑通，最终完成项有截图和指标支撑",
+        "sourceEvidence":  "step07 cloud upload, payload table, report conclusion",
+        "layoutFamily":  "summary",
+        "visualAsset":  "cloud terminal screenshots and payload table",
+        "speakerNote":  "先讲 payload 包含哪些字段，再讲完成内容、加分验证和后续改进",
+        "qaRisk":  "总结文字不能泛泛而谈"
+    },
+    {
+        "index":  22,
+        "purpose":  "正式结束答辩",
+        "claim":  "以感谢页结束并请求老师批评指正",
+        "sourceEvidence":  "deck topic and presenter metadata",
+        "layoutFamily":  "thanks",
+        "visualAsset":  "none",
+        "speakerNote":  "结束时感谢老师，准备进入提问环节",
+        "qaRisk":  "保持居中和无框"
+    }
+]
