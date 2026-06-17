@@ -1,0 +1,110 @@
+{
+  "version": "v2-20260606",
+  "description": "Shen-PPT editable four-page sample deck library. Each style contains cover, directory, section divider, and body pages.",
+  "groups": {
+    "general": {
+      "description": "General academic, engineering, education, business, and technology presentation skins.",
+      "styles": [
+        {
+          "slug": "academic-minimal",
+          "name": "Academic Minimal",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_academic-minimal.pptx",
+          "useFor": "clean academic reports, paper reading, thesis progress"
+        },
+        {
+          "slug": "business-roadshow",
+          "name": "Business Roadshow",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_business-roadshow.pptx",
+          "useFor": "project proposals, productized research, entrepreneurship reports"
+        },
+        {
+          "slug": "chinese-academic",
+          "name": "Chinese Academic",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_chinese-academic.pptx",
+          "useFor": "formal Chinese academic defenses and course reports"
+        },
+        {
+          "slug": "dark-engineering",
+          "name": "Dark Engineering",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_dark-engineering.pptx",
+          "useFor": "engineering projects, code reports, experiment systems"
+        },
+        {
+          "slug": "data-analytics",
+          "name": "Data Analytics",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_data-analytics.pptx",
+          "useFor": "data results, charts, model evaluation, dashboards"
+        },
+        {
+          "slug": "education-clean",
+          "name": "Education Clean",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_education-clean.pptx",
+          "useFor": "course defense, teaching report, student project presentation"
+        },
+        {
+          "slug": "research-blue",
+          "name": "Research Blue",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_research-blue.pptx",
+          "useFor": "research talks, group meetings, technical route planning"
+        },
+        {
+          "slug": "tech-launch",
+          "name": "Tech Launch",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT风格样板_tech-launch.pptx",
+          "useFor": "software systems, demos, product-oriented engineering projects"
+        }
+      ]
+    },
+    "tongji": {
+      "description": "Tongji-specific editable sample decks with fixed school-logo placement and campus/template-derived visual language.",
+      "styles": [
+        {
+          "slug": "tongji-blue-clean",
+          "name": "Tongji Blue Clean",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-blue-clean.pptx",
+          "useFor": "default Tongji blue-white academic defense"
+        },
+        {
+          "slug": "tongji-green-academic",
+          "name": "Tongji Green Academic",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-green-academic.pptx",
+          "useFor": "formal Tongji academic reports with green visual tone"
+        },
+        {
+          "slug": "tongji-green-vitality",
+          "name": "Tongji Green Vitality",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-green-vitality.pptx",
+          "useFor": "course projects, student innovation, vivid campus tone"
+        },
+        {
+          "slug": "tongji-guangying",
+          "name": "Tongji Guangying",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-guangying.pptx",
+          "useFor": "campus-image-based Tongji reports"
+        },
+        {
+          "slug": "tongji-guangying-jiyi",
+          "name": "Tongji Guangying Jiyi",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-guangying-jiyi.pptx",
+          "useFor": "warm campus-memory Tongji reports"
+        },
+        {
+          "slug": "tongji-sakura",
+          "name": "Tongji Sakura",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-sakura.pptx",
+          "useFor": "soft campus-style academic or course reports"
+        },
+        {
+          "slug": "tongji-study-space",
+          "name": "Tongji Study Space",
+          "deck": "references/style-samples-v2-20260606/sample-decks/Shen-PPT同济样板_tongji-study-space.pptx",
+          "useFor": "library, learning-space, teaching, and study reports"
+        }
+      ]
+    }
+  },
+  "overviews": {
+    "general": "references/style-samples-v2-20260606/sample-decks/style-samples-v2-general-overview.png",
+    "tongji": "references/style-samples-v2-20260606/sample-decks/style-samples-v2-tongji-overview.png"
+  }
+}

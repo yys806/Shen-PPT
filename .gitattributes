@@ -1,0 +1,8 @@
+*.md text eol=lf
+*.json text eol=lf
+*.ps1 text eol=lf
+*.yml text eol=lf
+*.pptx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
