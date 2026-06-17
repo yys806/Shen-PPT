@@ -1,111 +1,120 @@
-# Shen-PPT
+<h1 align="center">Shen-PPT</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/CI-passing-brightgreen?style=for-the-badge&logo=github" alt="CI passing" />
-  <img src="https://img.shields.io/badge/release-v0.1.0-blue?style=for-the-badge" alt="release v0.1.0" />
-  <img src="https://img.shields.io/badge/templates-15%20editable-7c3aed?style=for-the-badge" alt="15 editable templates" />
-  <img src="https://img.shields.io/badge/PPTX-editable-f97316?style=for-the-badge" alt="editable PPTX" />
-  <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT license" />
-  <img src="https://img.shields.io/badge/language-%E4%B8%AD%E6%96%87%20%7C%20English-2563eb?style=for-the-badge" alt="Chinese and English" />
+  <strong>一个用于生成可编辑学术汇报与答辩 PPT 的 Codex Skill</strong>
 </p>
 
 <p align="center">
-  <strong>A deterministic Codex skill for generating editable academic and defense PowerPoint decks.</strong>
+  <a href="https://github.com/yys806/Shen-PPT/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/yys806/Shen-PPT/validate.yml?branch=main&style=for-the-badge&logo=github&label=CI" alt="CI status" /></a>
+  <a href="https://github.com/yys806/Shen-PPT/tree/main"><img src="https://img.shields.io/badge/version-main-blue?style=for-the-badge" alt="main branch" /></a>
+  <a href="references/style-samples-v2-20260606/sample-decks"><img src="https://img.shields.io/badge/templates-15%20editable-7c3aed?style=for-the-badge" alt="15 editable templates" /></a>
+  <a href="references/highest-references/orangepi-defense-final-v9-20260607"><img src="https://img.shields.io/badge/reference-highest%20quality-f97316?style=for-the-badge" alt="highest reference" /></a>
+  <a href="SKILL.md"><img src="https://img.shields.io/badge/Codex-Skill-111827?style=for-the-badge" alt="Codex Skill" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT license" /></a>
 </p>
 
-Shen-PPT is a Codex skill for Chinese academic PPT production. It turns user-provided reports, code folders, figures, screenshots, tables, and project materials into a structured editable PPTX package through a fixed approval pipeline.
+<p align="center">
+  <a href="#安装">安装</a> |
+  <a href="#使用方式">使用方式</a> |
+  <a href="#样板预览">样板预览</a> |
+  <a href="#固定流程">固定流程</a> |
+  <a href="#仓库校验">仓库校验</a>
+</p>
 
-It is designed for:
+Shen-PPT 是一个面向中文学术汇报、课程答辩、论文答辩和工程项目展示的 Codex Skill。它会读取用户提供的报告、代码文件夹、截图、图表、实验结果和参考材料，通过固定流水线生成可编辑的 PowerPoint 文件。
+
+它的目标不是“看起来像 PPT 的图片”，而是生成真正可以点击、修改、替换的 PPTX：文字、图标、形状、流程图、表格、截图和图片都尽量保持独立可编辑或独立可替换。
+
+## 适用场景
 
 - 组会汇报
 - 课程答辩
 - 论文答辩
 - 学术汇报
-- 项目/代码/实验结果展示
+- 项目代码讲解
+- 实验结果展示
 - 同济大学蓝白/校徽风格 PPT
 
-## Preview
+## 样板预览
 
-### General Style Samples
+### 通用风格样板
 
-![General style samples](references/style-samples-v2-20260606/sample-decks/style-samples-v2-general-overview.png)
+[![通用风格样板](references/style-samples-v2-20260606/sample-decks/style-samples-v2-general-overview.png)](references/style-samples-v2-20260606/sample-decks)
 
-### Tongji Style Samples
+### 同济风格样板
 
-![Tongji style samples](references/style-samples-v2-20260606/sample-decks/style-samples-v2-tongji-overview.png)
+[![同济风格样板](references/style-samples-v2-20260606/sample-decks/style-samples-v2-tongji-overview.png)](references/style-samples-v2-20260606/sample-decks)
 
-### Highest Reference Quality Bar
+### 最高质量参考
 
-The OrangePi defense deck is kept as a quality reference only. It is not a reusable template.
+OrangePi 答辩 PPT 只作为质量参考，不作为通用模板复用。
 
-![Highest reference contact sheet](references/highest-references/orangepi-defense-final-v9-20260607/contact-sheet.png)
+[![最高质量参考](references/highest-references/orangepi-defense-final-v9-20260607/contact-sheet.png)](references/highest-references/orangepi-defense-final-v9-20260607)
 
-## What Shen-PPT Fixes
+## Shen-PPT 解决什么问题
 
-Shen-PPT is built to avoid the common failure modes of AI-generated PPT:
+- 不按指定模板生成
+- 字体乱用，页面风格漂移
+- 把整页 PPT 做成不可编辑截图
+- 页面太空，真实图片和结果表格太小
+- 图标像矩形方块，或者为了装饰乱放
+- 直接跳过大纲确认和四页样板确认
+- 输出一大段英文状态，让用户不知道确认什么
+- 只生成 PPT，忘记讲稿和可能问答
 
-- not following the requested template
-- random fonts and drifting page styles
-- full-slide screenshots that cannot be edited
-- sparse pages with tiny evidence images
-- fake or decorative icons
-- long English execution dumps shown to Chinese users
-- skipping outline/sample approval and directly generating the whole deck
-- forgetting speaker script and likely Q&A documents
+## 最终交付物
 
-## Fixed Output Package
+每次完整生成后，默认交付三件套：
 
-Every completed Shen-PPT run should produce:
-
-| File | Required | Notes |
+| 文件 | 必须 | 说明 |
 |---|---:|---|
-| `{deck-title}.pptx` | yes | editable PPTX, not full-slide screenshots |
-| `{deck-title}_讲稿.md` | yes | compact speaker script generated from final PPT and source materials |
-| `{deck-title}_问答.md` | yes | compact likely defense questions and direct answers |
+| `{deck-title}.pptx` | 是 | 可编辑 PowerPoint 文件 |
+| `{deck-title}_讲稿.md` | 是 | 根据最终 PPT 和材料生成的紧凑讲稿 |
+| `{deck-title}_问答.md` | 是 | 老师可能提问与答辩回答 |
 
-## Fixed Pipeline
+## 固定流程
 
-Shen-PPT works like an assembly line. The stages should not be skipped or merged.
+Shen-PPT 必须像流水线一样运行，不能随意跳步、合并或替换流程。
 
-| Stage | Name | Output |
+| 阶段 | 名称 | 输出 |
 |---:|---|---|
-| 0 | Activation | execution lock with loaded references |
-| 1 | Intake | theme, materials, output path, audience |
-| 2 | Material Reading | source findings and asset list |
-| 3 | Outline Only | page-by-page outline for user approval |
-| 4 | Template/Style Lock | selected template or sample deck lock |
-| 5 | Design Lock | parameters, fonts, navigation, density, QA checklist |
-| 6 | Four Sample Pages | cover, directory, section divider, body for approval |
-| 7 | Full Deck Production | complete editable PPTX |
-| 8 | QA And Repair | previews/contact sheet and fixes |
-| 9 | Final Documents | 讲稿.md and 问答.md |
-| 10 | Delivery | final package |
+| 0 | 激活 | 加载规则、参数表和参考文件 |
+| 1 | 信息确认 | 主题、材料、输出路径、受众 |
+| 2 | 材料读取 | 读取报告、代码、图片、表格和结果 |
+| 3 | 只生成大纲 | 页级大纲和素材安排，等待用户确认 |
+| 4 | 模板/风格锁定 | 锁定指定模板或样板 PPT |
+| 5 | 设计锁定 | 字体、导航、图标、密度、QA 规则 |
+| 6 | 四页样板 | 首页、目录页、章节页、正文页，等待用户确认 |
+| 7 | 完整生成 | 生成完整可编辑 PPTX |
+| 8 | QA 修复 | 渲染预览，检查重叠、裁切、字体、密度 |
+| 9 | 生成文档 | 生成讲稿和问答 |
+| 10 | 交付 | PPTX + 讲稿 + 问答 |
 
-## Core Visual Rules
+## 核心视觉规则
 
-- Chinese large titles: `微软雅黑` bold
-- Chinese subtitles, body, presenter/team text, module labels: `方正小标宋简体`
-- English letters and numbers: `Times New Roman`
-- Body page header: one large section title plus one formal subtitle only
-- Right-top navigation: fixed two-line module buttons, number on top and four-character label below
-- Real screenshots, charts, tables, terminal outputs, and device photos are used first
-- Real images must be shown complete with contain/fit placement, not cropped
-- AI images are allowed only as local/partial assets, not full-slide reference pages
-- No animations or slide transitions by default
-- Icons must be real semantic line icons or omitted, never filled square pseudo-icons
+- 中文大标题：`微软雅黑` 加粗
+- 中文小标题、正文、汇报人/小组成员、模块标签：`方正小标宋简体`
+- 英文和数字：`Times New Roman`
+- 正文页只有一个大标题和一个正式小标题
+- 右上角导航固定为两行：上方 `01/02`，下方四字短标签
+- 真实截图、图表、结果表格、终端输出、实物照片优先使用
+- 真实图片必须完整显示，允许缩放，不允许随意裁切
+- AI 图片只作为局部素材，不生成整页 PPT 参考图
+- 默认不加动画、不加切换效果
+- 图标必须是真实语义线性图标或直接不用，禁止矩形方块假图标
 
-## Template Library
+## 模板库
 
-All PPTX templates and preview images live under `references/`.
+所有 PPT 样板、参考图、参数表和最高参考都放在 `references/` 中。
 
-| Group | Count | Location |
+| 类型 | 数量 | 位置 |
 |---|---:|---|
-| General editable samples | 8 | `references/style-samples-v2-20260606/sample-decks/` |
-| Tongji editable samples | 7 | `references/style-samples-v2-20260606/sample-decks/` |
-| Highest reference deck | 1 | `references/highest-references/orangepi-defense-final-v9-20260607/` |
-| Parameter spec | 1 | `references/parameter-spec.md` |
+| 通用可编辑样板 | 8 | `references/style-samples-v2-20260606/sample-decks/` |
+| 同济可编辑样板 | 7 | `references/style-samples-v2-20260606/sample-decks/` |
+| 最高质量参考 | 1 | `references/highest-references/orangepi-defense-final-v9-20260607/` |
+| 参数规范 | 1 | `references/parameter-spec.md` |
 
-Available style slugs:
+可用风格 slug：
 
 ```text
 academic-minimal
@@ -125,7 +134,7 @@ tongji-sakura
 tongji-study-space
 ```
 
-## Repository Layout
+## 仓库结构
 
 ```text
 shen-ppt/
@@ -138,39 +147,34 @@ shen-ppt/
     orangepi-defense-final-v9-20260607/
     style-samples-v2-20260606/
       sample-deck-map.json
+      style-manifest.json
       sample-decks/
   scripts/
     validate-repo.ps1
 ```
 
-The repository root intentionally stays clean. PPTX files, previews, reference decks, contact sheets, and parameter files belong inside `references/`.
+仓库根目录保持干净。PPTX、预览图、参考 deck、contact sheet 和参数表都应该放进 `references/`。
 
-## Installation
+## 安装
 
-Clone the repository into your Codex skills directory:
+克隆到 Codex skills 目录：
 
 ```powershell
 git clone https://github.com/yys806/Shen-PPT.git C:\Users\Lenovo\.codex\skills\shen-ppt
 ```
 
-If the directory already exists, update it:
+如果已经安装过：
 
 ```powershell
 cd C:\Users\Lenovo\.codex\skills\shen-ppt
 git pull
 ```
 
-## Usage
+## 使用方式
 
-Invoke the skill in Codex with `$shen-ppt`, then provide:
+在 Codex 中调用 `$shen-ppt`，并提供主题、材料路径和输出路径。
 
-- theme: `组会汇报`, `课程答辩`, or `论文答辩`
-- material paths: report files, code folders, image folders, result tables, screenshots
-- output folder
-- optional style slug or user-provided PPTX template
-- presenter/team information if it should appear on the cover
-
-Example:
+示例：
 
 ```text
 [$shen-ppt](C:\Users\Lenovo\.codex\skills\shen-ppt\SKILL.md)
@@ -180,31 +184,24 @@ Example:
 风格：tongji-blue-clean
 ```
 
-Expected behavior:
+调用后，Shen-PPT 应该先读取材料并只生成大纲。大纲确认后，再锁定模板或视觉风格，然后生成四页样板。四页样板确认后，才会生成完整 PPT。
 
-1. Shen-PPT reads `SKILL.md`, `references/parameter-spec.md`, and required reference assets.
-2. It shows a concise Chinese execution lock.
-3. It reads the user's materials and generates only the outline first.
-4. After outline approval, it locks the visual/template direction.
-5. It generates four editable sample pages.
-6. After sample approval, it generates the full editable PPTX.
-7. It QA-checks previews and produces the final PPTX plus two Markdown documents.
+## 仓库校验
 
-## Validation
-
-Run the repository checker before publishing changes:
+发布或修改前运行：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\validate-repo.ps1
 ```
 
-The checker verifies:
+校验内容包括：
 
-- top-level PPTX/PNG reference files were not accidentally placed outside `references/`
-- required reference folders exist
-- sample overview images exist
-- the 15 editable sample PPTX decks are present
-- the highest reference deck, contact sheet, and parameter spec exist
+- 根目录没有误放 PPTX/PNG 参考文件
+- `references/` 目录存在
+- 15 套可编辑样板 PPTX 存在
+- 通用/同济 overview 图片存在
+- 最高参考 PPTX、contact sheet 和参数表存在
+- `sample-deck-map.json` 能解析到真实样板文件
 
 ## License
 
