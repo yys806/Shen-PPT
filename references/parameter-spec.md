@@ -81,6 +81,8 @@ Role-level font lock:
 - English letters, code identifiers, formulas, page numbers, module numbers, chart axis numbers, table numbers, and Arabic numerals use `Times New Roman`
 - visible editable text must not retain `Aptos`, `Calibri`, `DengXian`, or any other unintended PowerPoint default font
 - template fonts are allowed only when the user explicitly prioritizes the template font over Shen-PPT font lock
+- when content needs to be richer, reduce body/table/formula text by `1-2pt` before deleting source-grounded details; keep slide titles readable and stable
+- dense paper-explanation slides normally use body text `12-16pt`, compact table text `10-12pt`, formula display text `11-13pt`, and captions `10-12pt`
 
 ## 4. Background And Chrome
 
@@ -145,7 +147,7 @@ For Tongji-specific decks, use this logo asset and geometry consistently on all 
 
 ### Cover
 
-Use a large editable title on the left and an independent local illustration or real project visual on the right.
+Use a large editable title on the left and an independent source visual on the right. The right visual is mandatory: paper decks use a real paper figure/table/chart when available; project decks use a real screenshot/chart/photo from the project/report folders when available. If no real source asset exists, use a local partial AI/editorial visual, but never leave the cover as icon-only decoration or a blank panel.
 
 | Element | Geometry |
 |---|---|
@@ -156,7 +158,7 @@ Use a large editable title on the left and an independent local illustration or 
 | title line 2 | `x=54, y=220, w=480, h=66`, size `58` |
 | title line 3 | `x=54, y=288, w=520, h=66`, size `58` |
 
-Presenter on cover uses `方正小标宋简体`, not title font. Title text remains editable even if the cover visual is AI-generated.
+Presenter on cover uses `方正小标宋简体`, not title font. Title text remains editable even if the cover visual is AI-generated. If the cover uses a real paper/project image, insert it with contain/fit-complete placement and a concise caption.
 
 ### Directory
 
@@ -354,14 +356,25 @@ Dense panel:
 
 Real screenshots, charts, wiring photos, and tables use contain/fit-complete placement. Never use cover/crop for real evidence unless the user explicitly requests it.
 
+Image caption lock:
+
+- every inserted figure, screenshot, chart, table image, AI local insert, or representative image needs a visible caption
+- caption text size is normally `10-12px` for compact evidence captions and `11-13px` for dominant figures
+- captions are placed directly under the image region inside the same visual block and use muted text
+- visible captions should be concise; long source captions belong in the asset manifest or slide card
+- a slide with an image but no visible caption is a QA failure unless the user explicitly asks for caption-free images
+
 ### Data Table
 
 - outer panel fill `panelDark`
 - header text color `amber`, bold
-- default header size `14`
-- default body size `14-15`
+- default header size `12-13`
+- default body size `10-12`
 - row height should be large enough that all text has visible vertical padding
 - columns should use fixed widths; do not let columns auto-drift page by page
+- paper/project experiment pages should use editable tables for core experiment summaries rather than explaining all results as bullets
+- core experiment tables should include source-grounded fields such as scenario, metric, method/result, and interpretation/notes
+- if a paper has multiple experiment settings, create one compact summary table and pair it with the real figure/chart; do not leave the figure without a table when the conclusion depends on experimental comparison
 
 ### Step Card
 
@@ -479,6 +492,54 @@ Runtime sample-deck path lock:
 
 Every generated deck should be driven by structured slide cards, a locked style kit, and a QA scorecard.
 
+Skill runtime lock:
+
+- Shen-PPT is used from a Codex conversation through the `shen-ppt` skill.
+- The skill must use the shared engine scripts and parameter rules whenever practical.
+- The skill expresses gates as Chinese chat confirmations and must preserve the required approvals: outline approved, template/style locked, four-sample pages approved, final deck generated, QA passed or repaired, final documents generated.
+
+Code engine lock:
+
+- Default deterministic helper: `scripts/shen_ppt_engine.py`
+- Default PowerPoint COM renderer: `scripts/build_shen_ppt_com.ps1`
+- Engine test file: `tests/test_shen_ppt_engine.py`
+- Shen-PPT should treat the slide-card JSON as the stable boundary between material understanding and PPT rendering.
+- Shen-PPT should treat preview PNGs, QA reports, speaker scripts, and likely-Q&A Markdown as standard artifacts, not optional side effects.
+- For Markdown/text/PDF sources, the engine should create `{deck-title}_slide_cards.json` before deck construction whenever practical.
+- The COM renderer consumes slide cards and must generate editable PowerPoint objects using the locked parameter table.
+- The COM renderer must accept `-PreviewDir` and export slide PNG previews for QA whenever practical.
+- The COM renderer must set `EntryEffect = none`, remove object animation sequences, disable timed advance, and leave click advance only.
+- The COM renderer must set visible text fonts by role: `Microsoft YaHei`, `方正小标宋简体`, and `Times New Roman`; no visible text should remain in Aptos, Calibri, DengXian, or accidental fallback fonts after QA.
+- The COM renderer must stay UTF-8 BOM safe for Windows PowerShell and avoid fragile unescaped Chinese literals in parser-sensitive places.
+- The code engine is a deterministic assistant, not a gate bypass. It may generate slide cards, previews, and Markdown drafts, but it cannot skip Stage 3, Stage 4, or Stage 6 approvals in normal Shen-PPT runs.
+
+PDF and paper extraction lock:
+
+- Remove or ignore PDF front matter from visible content: journal headers, page headers, page numbers, author lists, affiliations, `Senior Member IEEE`, `Fellow IEEE`, references, and repeated paper title strings.
+- Do not paste broken double-column extraction fragments into visible slide text or final Markdown, for example merged words, interrupted hyphenation, or cross-column sentence splices.
+- If a raw sentence is needed for traceability, store it as slide-card source evidence or notes, then rewrite the visible slide copy in concise formal Chinese.
+- For paper explanation decks, extract the real paper structure when available: abstract/problem, key definitions/modeling, problem formulation, method/module design, experiments/setup/metrics, conclusion/limitations.
+- For paper explanation decks, extract real paper figures/tables/charts from the PDF and assign them to relevant slide cards before deck construction. Cover, evidence, method, and results pages should use those real assets when available.
+- The visible PPT should teach the paper, not display raw extracted paragraphs. Use Chinese claims, process diagrams, architecture maps, matrices, and metric cards to explain the structure.
+
+Project asset extraction lock:
+
+- For project/report/code decks, recursively scan the supplied folders for real screenshots, charts, terminal captures, device photos, UI screenshots, wiring photos, result tables, and exported images.
+- Do not skip common asset folders such as `assets`, `images`, `figures`, `screenshots`, `results`, or `report` when looking for source visuals.
+- Use project visuals before generic icons, AI visuals, or placeholder diagrams.
+- The source/asset manifest or slide cards must identify which real images were used on which pages.
+
+LaTeX and formula lock:
+
+- Default local LaTeX-PPT root is `D:\shen\test\latex-ppt`; the COM renderer may load `latex.ppam` from that folder when PowerPoint allows it.
+- The original LaTeX/source formula must be preserved in slide cards or notes for traceability.
+- Visible slide content must show either a converted editable PowerPoint equation or a clean readable display formula/summary.
+- PowerPoint COM equation insertion must select the current slide and then select the seed textbox's `TextFrame.TextRange` before `EquationInsertNew`. Selecting the shape itself is a known failure mode.
+- The COM renderer should enable LaTeX mode on the same slide that receives the first equation, using a temporary tiny textbox; do not use a pre-inserted scratch slide to enable LaTeX mode in long decks.
+- Converted equations must carry a `ShenPPT_LatexSource` tag containing the original source expression. Formula-heavy deck QA should reopen the PPTX and count these tags against the slide-card `latex` count.
+- Formula-heavy paper decks should include multiple formulas or formula summaries where they clarify the paper: objective/modeling, method/sampling, and metric/risk/evaluation are the default minimum roles.
+- If automated equation insertion fails because PowerPoint rejects the formula state or the local macro requires interactive input, do not show raw broken LaTeX with long backslash/braces syntax on the slide; use the clean display formula, record the fallback in QA, and do not call the deck final until the fallback is accepted or repaired.
+
 Mandatory Startup Contract:
 
 - load `SKILL.md`
@@ -594,6 +655,8 @@ Slide-card fields:
 | `sourceEvidence` | report/code/image/table/screenshot/metric used as evidence |
 | `layoutFamily` | one finite layout type, not freehand placement |
 | `visualAsset` | real image/table/chart/code/AI local insert or `none` |
+| `latex` | optional list of original formula source plus clean display expression |
+| `tables` | optional list of editable table data with kind, title, headers, and rows |
 | `speakerNote` | optional private presenter note, never visible on slide |
 | `qaRisk` | likely failure: sparse, crowded, weak evidence, tiny image, overflow, alignment, font, or asset provenance |
 
@@ -751,6 +814,14 @@ Before delivery, run or manually confirm:
 - same-role icon batches are either complete or omitted together
 - no Chinese full stops in formal Chinese slide copy
 - no text overlap or text overflow
+- no visible raw broken LaTeX strings on slides; formulas are converted equations or clean display formulas
+- formula-heavy decks have `ShenPPT_LatexSource` tags for converted equations; the tag count should match the expected slide-card formula count unless a recorded fallback was accepted
+- formula-heavy paper decks include objective/modeling, method/sampling, and metric/risk/evaluation formulas when the source contains or implies them
+- core experiment comparisons are represented as editable table objects where relevant, not only prose bullets
+- cover page has a right-side visual asset
+- every inserted image/figure/chart/table/local AI visual has a visible caption
+- paper decks use extracted real PDF figures/tables/charts when available
+- project decks use real local screenshots/charts/photos from supplied folders when available
 - real images/charts/tables are complete, not cropped
 - evidence images are large enough to inspect
 - process arrows are present, visible, and correctly shaped

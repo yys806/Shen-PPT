@@ -11,6 +11,18 @@ Create material-first academic PPTX decks through a gated workflow: read the use
 
 The core principle is **editable PPT first**. Do not use full-slide screenshots or full-slide AI images as the final deck. AI image generation is allowed only for local/partial assets when it improves a slide and no better real source asset exists.
 
+## Skill Runtime Model
+
+Shen-PPT is a Codex skill. A human invokes `shen-ppt` in a Codex conversation and the agent follows the fixed Stage 0-10 approval pipeline in chat.
+
+The skill uses these production resources:
+
+- `scripts/shen_ppt_engine.py` for material reading, slide-card generation, source-asset extraction, compact speaker-script draft generation, and compact likely-Q&A draft generation
+- `scripts/build_shen_ppt_com.ps1` for PowerPoint COM editable deck rendering, preview export, no-animation enforcement, formula insertion, and table rendering
+- `references/parameter-spec.md`, style samples, highest reference, icon assets, and template assets as shared production rules
+
+Runtime rule: improvements to material parsing, slide-card schema, formula handling, table rendering, icon generation, preview export, or QA should be made in the shared `scripts/` engine whenever practical, but those scripts must not weaken Shen-PPT approval gates.
+
 ## Highest Reference Baseline
 
 The highest-quality reference is stored at `references/highest-references/orangepi-defense-final-v9-20260607/`.
@@ -472,6 +484,16 @@ Extract:
 
 Do not invent results, metrics, citations, or claims missing from the source material. Mark missing inputs clearly.
 
+Mandatory source-asset extraction lock:
+
+- For paper/PDF decks, extract real figures, tables, charts, formulas, and important diagrams from the paper PDF before making the outline. Do not produce a paper explanation deck that only uses editable placeholder diagrams when the PDF contains real figures.
+- For project/code/report decks, recursively inspect the project/report folders for real screenshots, result charts, terminal captures, device photos, UI screenshots, wiring photos, tables, and exported images. Use those assets before AI-generated or generic representative images.
+- Cover pages must include a right-side visual asset. Prefer a real source figure/screenshot/chart from the paper or project. If no real source asset exists, generate or draw a local partial visual, but never leave the cover right side as icon-only decoration or an empty panel.
+- Every inserted figure, screenshot, chart, table image, AI local visual, or representative image must have a visible small caption unless the user explicitly asks to remove captions. Captions should be concise and audience-facing; keep long original captions in the asset manifest or slide card.
+- Slide cards must record each used asset with `visualAsset`, `caption`, source/provenance, and intended page usage. `visualAsset: none` is acceptable only for pure text/diagram pages where no real source asset is relevant.
+- Real source images use contain/fit-complete placement. Cropping real paper figures, screenshots, charts, tables, or project photos is a QA failure unless the user explicitly requests a crop.
+- If the source contains equations or LaTeX-like formulas, preserve the original LaTeX/source expression in slide cards and show a clean readable equation or formula summary on the slide. Do not expose raw broken LaTeX strings with long backslash/braces syntax as visible slide text.
+
 ### 3. PPT Outline
 
 Before visual sample generation, create a user-facing outline that specifies:
@@ -518,6 +540,9 @@ Ask the user to approve one direction, optionally with edits. This is a separate
 
 Borrow product discipline from presentation tools and PPT-master-style planning, but do not use their execution workflows. Convert those ideas into Shen-PPT's editable, material-first pipeline:
 
+- Prefer the built-in code engine when available: use `scripts/shen_ppt_engine.py` to convert source materials into slide cards and compact final Markdown drafts, then use the locked PPT builder (`presentations:Presentations` first, PowerPoint COM fallback second) to construct editable slides from those cards. Do not freehand long decks from chat prose when the code engine can produce deterministic slide-card structure.
+- Use `scripts/build_shen_ppt_com.ps1` as the official PowerPoint COM fallback implementation when `presentations:Presentations` is unavailable. It must be treated as a parameterized renderer for slide cards, not as a separate PPT skill or a permission to skip Shen-PPT gates.
+- The code engine output is a draft contract, not user approval. It can generate outline files, slide cards, speaker script drafts, and likely-Q&A drafts, but the Stage 3 outline approval, Stage 4 template/style lock, and Stage 6 four-page sample approval still control when the final deck may be produced.
 - Treat the outline as structured slide cards: each slide card has `purpose`, `audience-facing claim`, `source evidence`, `layout family`, `visual asset`, `speaker note`, and `QA risk` fields. Do not start building slides from loose prose.
 - Build from a style kit, not one-off styling: every deck locks color tokens, font roles, component geometry, image treatment, icon family, module navigation, and footer/header chrome before full production.
 - Use layout candidates before committing difficult pages: for process, result, architecture, comparison, and evidence-heavy slides, decide the layout family first, then place content. Avoid forcing all pages into the same card grid.
@@ -526,6 +551,29 @@ Borrow product discipline from presentation tools and PPT-master-style planning,
 - Add speaker notes as private presenter support when useful. Speaker notes must not appear as slide body text and must not replace evidence on the slide.
 - Produce a delivery package mindset: final PPTX, compact speaker-script Markdown, compact likely-Q&A Markdown, optional PDF preview when requested, contact sheet/preview images when practical, source-asset manifest, and design-lock summary.
 - Use a slide-quality scorecard before delivery: content grounding, hierarchy, density, alignment, evidence visibility, editability, font compliance, image completeness, icon consistency, no-animation compliance, and audience-facing wording.
+
+Code-engine stability rules:
+
+- `scripts/shen_ppt_engine.py` is the default deterministic material-to-slide-card helper for Markdown, text, and PDF sources. It must remove PDF front matter, headers, author strings, references noise, and double-column extraction fragments from visible slide copy.
+- For paper/PDF sources, the engine must extract usable real figures/tables/charts from the PDF into the working asset folder and assign them to relevant slide cards before rendering.
+- For project folders, the engine must read relevant text/code/report files and collect real local images from common folders such as `assets`, `images`, `figures`, `screenshots`, `results`, and `report`.
+- Cover slide cards must have a right-side `visualAsset` whenever any real or generated local visual is available.
+- Any slide card with `visualAsset != none` must also have a concise visible `caption`; renderer helpers should synthesize a fallback caption from the filename if the card is missing one.
+- Raw PDF sentences may be kept as source evidence inside slide cards, but do not paste broken English extraction fragments into visible Chinese PPT body text, speaker scripts, or likely-Q&A answers.
+- For paper explanation decks, organize content around the paper's real structure: background/problem, definitions/modeling, method design, experiments, conclusion/limitations. Do not reduce a paper to generic "background-method-result-summary" filler if section headings and experiment details are available.
+- For formula-heavy papers or projects, slide cards should preserve original LaTeX/source expressions and provide a clean `display` field for slide rendering. Use multiple formula roles when the material supports them: objective/modeling, method/sampling, and metric/risk/evaluation.
+- For experiment-heavy papers or projects, slide cards should include editable table data in a `tables` field. Core experiment comparison pages should pair real figures/charts with a compact editable table rather than relying only on prose bullets.
+- When the user asks for richer content, first reduce body/table/formula text sizes by about `1-2pt`, then add source-grounded details, formulas, and tables. Do not delete important technical content merely to keep large typography.
+- Generated slide cards must use finite `layoutFamily` values and must keep section roster, right-top navigation labels, title/subtitle fields, and QA risks explicit.
+- `scripts/build_shen_ppt_com.ps1` must export PNG previews when practical via `-PreviewDir`, clear all animations/transitions, enforce the locked font roles, and keep text/shapes/icons independently selectable.
+- `scripts/build_shen_ppt_com.ps1` supports the local LaTeX-PPT root `D:\shen\test\latex-ppt` via `-LatexPptRoot`. It may load `latex.ppam` when PowerPoint allows it and must insert formulas as native editable PowerPoint equations whenever possible.
+- PowerPoint COM formula insertion is state-sensitive. Before every equation insertion, select the current slide, create/select the formula seed textbox, select `TextFrame.TextRange`, then call `EquationInsertNew`; selecting only the shape is not enough and can trigger `HRESULT E_FAIL`.
+- Enable LaTeX mode on the current slide at first equation use, using a temporary tiny textbox on that slide. Do not insert and delete a scratch slide at the beginning of the deck, because it can disturb active slide/selection state in longer decks.
+- After inserting a formula, save the original LaTeX/source expression into the equation object's `ShenPPT_LatexSource` tag. QA must be able to reopen the PPTX and count these tags for formula-heavy decks.
+- If equation insertion still fails, show the clean `display` formula rather than raw LaTeX source and record the fallback in QA. A deck with unexpected formula fallbacks is not final until the user accepts the fallback or the renderer is repaired.
+- `scripts/build_shen_ppt_com.ps1` must render slide-card `tables` as editable PowerPoint table-like shapes/text, not as raster screenshots.
+- PowerShell renderer scripts should be UTF-8 BOM safe and avoid relying on source-code Chinese literals where Windows PowerShell encoding may corrupt parsing; construct fragile font names such as `方正小标宋简体` safely when needed.
+- After any renderer or engine change, run the engine unit tests and a real smoke deck before updating the installed skill.
 
 ### 5. Design Lock
 
@@ -834,6 +882,14 @@ Before delivery, verify:
 - source/asset manifest records real images, AI local inserts, downloaded icons, logos, and template assets used in the deck
 - contact sheet or preview set was generated when practical, and the preview was inspected using the slide-quality scorecard
 - text does not overlap images, charts, buttons, or page chrome
+- paper decks use extracted real PDF figures/tables/charts when the source PDF contains them
+- project decks use real local screenshots/charts/photos from the supplied folders when available
+- cover pages include a right-side visual asset; icon-only or blank cover visuals are QA failures
+- every inserted image, figure, chart, table image, screenshot, AI local insert, or representative image has a visible small caption unless the user explicitly requested no captions
+- formulas are converted to editable equations when possible; otherwise visible formula text uses the clean display expression, not raw broken LaTeX with long backslash/braces syntax
+- formula-heavy paper decks include multiple visible formulas or formula summaries where they clarify objective, method, and evaluation
+- experiment-heavy paper/project decks include editable core experiment/result tables when relevant
+- dense technical pages use slightly smaller body/table/formula text when needed to preserve technical detail without overlap
 - vertical spacing follows the approved sample-page density; no accidental oversized empty top/bottom bands
 - normal body content reaches close to the bottom baseline where the slide is not intentionally sparse
 - page subtitles are formal, concise, declarative academic-defense titles without commas or long chained clauses

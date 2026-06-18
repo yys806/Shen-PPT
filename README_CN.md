@@ -77,6 +77,22 @@ OrangePi 答辩 PPT 只作为质量参考，不作为通用模板复用。
 | `{deck-title}_讲稿.md` | 是 | 根据最终 PPT 和材料生成的紧凑讲稿 |
 | `{deck-title}_问答.md` | 是 | 老师可能提问与答辩回答 |
 
+## 代码化引擎
+
+Shen-PPT 内置一套轻量确定性引擎，减少后续生成时对临场提示词的依赖。
+
+这套引擎服务 Codex 里的 `shen-ppt` skill，并遵循 skill 主规则里的对话阶段确认流程。
+
+| 文件 | 作用 |
+|---|---|
+| `scripts/shen_ppt_engine.py` | 读取 Markdown、文本和 PDF 材料，生成结构化 slide cards 和紧凑 Markdown 草稿 |
+| `scripts/build_shen_ppt_com.ps1` | 官方 PowerPoint COM fallback 渲染器，根据 slide cards 生成可编辑 PPTX |
+| `tests/test_shen_ppt_engine.py` | 回归测试 slide cards、紧凑文档和 PDF 首页噪声清洗 |
+
+代码引擎不是跳过 Shen-PPT 流程的捷径。正常生成仍然必须经过大纲确认、模板/风格锁定、四页样板确认、最终 PPTX QA，以及 PPTX + 两份 Markdown 的交付规则。
+
+论文 PDF 生成讲解 PPT 时，必须先清洗抽取结果。期刊页眉、作者列表、页码、参考文献噪声、双栏 PDF 拼接出来的英文碎片，都不能进入可见 PPT 正文和最终 Markdown。
+
 ## 固定流程
 
 Shen-PPT 必须像流水线一样运行，不能随意跳步、合并或替换流程。
@@ -156,7 +172,11 @@ shen-ppt/
       style-manifest.json
       sample-decks/
   scripts/
+    shen_ppt_engine.py
+    build_shen_ppt_com.ps1
     validate-repo.ps1
+  tests/
+    test_shen_ppt_engine.py
 ```
 
 仓库根目录保持干净。PPTX、预览图、参考 deck、contact sheet 和参数表都应该放进 `references/`。
@@ -208,6 +228,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\validate-repo.ps1
 - 通用/同济 overview 图片存在
 - 最高参考 PPTX、contact sheet 和参数表存在
 - `sample-deck-map.json` 能解析到真实样板文件
+- 代码引擎脚本和引擎测试文件存在
 
 ## License
 

@@ -77,6 +77,22 @@ Every complete Shen-PPT run should deliver three files:
 | `{deck-title}_讲稿.md` | yes | compact speaker script based on the final deck and source materials |
 | `{deck-title}_问答.md` | yes | likely defense questions and direct answers |
 
+## Code Engine
+
+Shen-PPT includes a small deterministic engine so future runs do not rely on freehand prompting.
+
+The engine is used by the Codex `shen-ppt` skill and follows the same chat-stage approval gates as the main skill instructions.
+
+| File | Role |
+|---|---|
+| `scripts/shen_ppt_engine.py` | reads Markdown/text/PDF sources and creates structured slide cards plus compact Markdown drafts |
+| `scripts/build_shen_ppt_com.ps1` | official PowerPoint COM fallback renderer for editable PPTX generation from slide cards |
+| `tests/test_shen_ppt_engine.py` | regression tests for slide-card generation, compact docs, and PDF front-matter cleanup |
+
+The engine is not a shortcut around the Shen-PPT gates. Normal runs still require outline approval, template/style lock, four-page sample approval, final PPTX QA, and the PPTX + two Markdown deliverable package.
+
+For paper decks, PDF extraction must be cleaned before it becomes visible slide copy. Journal headers, author lists, page headers, references noise, and broken double-column fragments should stay out of the PPT and final Markdown.
+
 ## Fixed Pipeline
 
 Shen-PPT must run like an assembly line. Stages should not be skipped, merged, or silently replaced.
@@ -156,7 +172,11 @@ shen-ppt/
       style-manifest.json
       sample-decks/
   scripts/
+    shen_ppt_engine.py
+    build_shen_ppt_com.ps1
     validate-repo.ps1
+  tests/
+    test_shen_ppt_engine.py
 ```
 
 The repository root is intentionally clean. PPTX files, previews, reference decks, contact sheets, and parameter files should live under `references/`.
@@ -208,6 +228,7 @@ The checker verifies:
 - general and Tongji overview images exist
 - highest reference PPTX, contact sheet, and parameter spec exist
 - `sample-deck-map.json` resolves to real sample deck files
+- code engine scripts and engine tests exist
 
 ## License
 
