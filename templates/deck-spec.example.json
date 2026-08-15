@@ -1,0 +1,69 @@
+{
+  "deckTitle": "基于扩散模型的多模态轨迹预测",
+  "subtitle": "DRIFT: Diffusion-based Robust Integrated Forecasting for Trajectories",
+  "author": "禹尧珅",
+  "affiliation": "同济大学 · 电子与信息工程学院",
+  "date": "2026-08-13",
+  "scenario": "s3-thesis",
+  "style": "thesis-formal",
+  "sections": [
+    {"id": "1", "title": "研究背景与动机", "short": "背景"},
+    {"id": "2", "title": "方法设计", "short": "方法"},
+    {"id": "3", "title": "实验验证", "short": "实验"},
+    {"id": "4", "title": "总结与展望", "short": "总结"}
+  ],
+  "slides": [
+    {"type": "cover"},
+    {"type": "toc", "title": "目录"},
+    {"type": "section", "section": "1", "title": "研究背景与动机", "tagline": "轨迹预测是自动驾驶与具身智能的核心模块之一"},
+    {"type": "content", "section": "1", "layout": "bullets", "title": "研究背景",
+     "body": ["轨迹预测：给定历史轨迹与环境上下文，预测未来多步运动",
+              "现有方法依赖单峰假设，在复杂交互场景下不确定性建模不足",
+              "扩散模型天然适合多模态分布建模，是生成式预测的新方向"],
+     "notes": "强调三点：任务定义、现有局限、扩散模型的切入点"},
+    {"type": "content", "section": "1", "layout": "stats", "title": "核心指标现状",
+     "body": [
+       {"num": "87%", "label": "Top-1 准确率上限"},
+       {"num": "3.2m", "label": "平均位移误差 ADE"},
+       {"num": "6.8m", "label": "最终位移误差 FDE"}
+     ]},
+    {"type": "section", "section": "2", "title": "方法设计", "tagline": "扩散生成 + 多模态融合"},
+    {"type": "content", "section": "2", "layout": "text", "title": "整体架构",
+     "body": ["以条件扩散模型为生成主干，将场景上下文编码为条件向量",
+              "引入鲁棒训练策略，缓解长尾分布下的模式崩溃",
+              "推理阶段支持多模态采样，兼顾精度与多样性"],
+     "notes": "架构三句话讲清：条件扩散、鲁棒训练、多模态采样"},
+    {"type": "content", "section": "2", "layout": "two-col", "title": "与基线方法的对比设计",
+     "body": {
+       "left": ["基线：Trajectron++、DenseTNT、TNT",
+                "统一数据集与评估协议",
+                "消融：扩散步数、条件编码器"],
+       "right": ["评估指标：ADE / FDE / Miss Rate",
+                 "多样性指标：多模态覆盖率",
+                 "鲁棒性：噪声注入实验"]
+     }},
+    {"type": "section", "section": "3", "title": "实验验证", "tagline": "在公开轨迹数据集上的系统评估"},
+    {"type": "content", "section": "3", "layout": "table", "title": "主要结果（摘要）",
+     "body": {
+       "headers": ["方法", "ADE↓", "FDE↓", "MR↓"],
+       "rows": [
+         ["Trajectron++", "0.31", "0.68", "0.19"],
+         ["DenseTNT", "0.30", "0.64", "0.17"],
+         ["DRIFT (Ours)", "0.27", "0.58", "0.14"]
+       ]
+     },
+     "notes": "三组基线对比，突出 Ours 全指标领先"},
+    {"type": "content", "section": "3", "layout": "bullets", "title": "消融实验结论",
+     "body": ["扩散步数 50→200：ADE 下降 6%，多样性显著提升",
+              "条件编码器换用场景图编码：FDE 下降 8%",
+              "鲁棒训练策略在噪声场景下增益最大"],
+     "notes": "三个消融各一句话结论"},
+    {"type": "section", "section": "4", "title": "总结与展望", "tagline": "总结贡献并展望未来方向"},
+    {"type": "content", "section": "4", "layout": "bullets", "title": "主要贡献",
+     "body": ["首个将扩散模型鲁棒训练引入轨迹预测的工作",
+              "统一的评估框架，覆盖精度、多样性与鲁棒性",
+              "在 IEEE TITS 在投，代码与模型将开源"],
+     "notes": "三点贡献要讲出差异化"},
+    {"type": "ending", "title": "谢谢聆听", "thanks": "恳请各位老师批评指正", "contact": "yys806@tongji.edu.cn · 同济大学"}
+  ]
+}

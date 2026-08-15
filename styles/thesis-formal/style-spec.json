@@ -1,0 +1,45 @@
+{
+  "name": "thesis-formal",
+  "display": "论文答辩（正式学术，深蓝衬线）",
+  "scenarios": [
+    "s3-thesis"
+  ],
+  "skeleton": "defense",
+  "palette": {
+    "base": "#FFFFFF",
+    "panel": "#F4F6FA",
+    "panel_dark": "#16324F",
+    "line": "#C9D2DE",
+    "text": "#1A1A2E",
+    "muted": "#5A6472",
+    "accent": "#1B3A6B",
+    "accent2": "#0F2440",
+    "grid": "#DEE4EC"
+  },
+  "fonts": {
+    "cn": "宋体",
+    "cn_title": "黑体",
+    "en": "Times New Roman",
+    "mono": "Consolas"
+  },
+  "sizes": {
+    "title": 36,
+    "h1": 24,
+    "h2": 20,
+    "body": 18,
+    "tag": 13,
+    "footer": 11,
+    "stat-num": 42,
+    "stat-label": 13
+  },
+  "decor": {
+    "motif": "细线+章节编号",
+    "forbidden": [
+      "装饰线",
+      "色条",
+      "阴影浮动卡片",
+      "彩色渐变",
+      "emoji"
+    ]
+  }
+}

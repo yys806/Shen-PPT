@@ -1,0 +1,42 @@
+{
+  "name": "academic-clean",
+  "display": "学术清新（浅色蓝绿）",
+  "scenarios": [
+    "s2-course"
+  ],
+  "skeleton": "defense",
+  "palette": {
+    "base": "#FFFFFF",
+    "panel": "#F0F7F6",
+    "panel_dark": "#E2F0EE",
+    "line": "#B8D8D4",
+    "text": "#17332F",
+    "muted": "#5B7A76",
+    "accent": "#0E7C6B",
+    "accent2": "#0A5247",
+    "grid": "#D8EAE7"
+  },
+  "fonts": {
+    "cn": "微软雅黑",
+    "cn_title": "微软雅黑",
+    "en": "Georgia",
+    "mono": "Consolas"
+  },
+  "sizes": {
+    "title": 40,
+    "h1": 26,
+    "h2": 22,
+    "body": 20,
+    "tag": 14,
+    "footer": 12,
+    "stat-num": 46,
+    "stat-label": 14
+  },
+  "decor": {
+    "motif": "圆角卡片+青色强调",
+    "forbidden": [
+      "紫色渐变",
+      "阴影过重"
+    ]
+  }
+}

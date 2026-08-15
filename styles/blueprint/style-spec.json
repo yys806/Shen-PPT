@@ -1,0 +1,89 @@
+{
+  "name": "blueprint",
+  "display": "Blueprint（ppt-master 原生：工程蓝图）",
+  "scenarios": [
+    "s2-course"
+  ],
+  "skeleton": "defense",
+  "palette": {
+    "base": "#0B1D3A",
+    "panel": "#0F2440",
+    "panel_dark": "#081527",
+    "line": "#2C4A75",
+    "text": "#DCE8F5",
+    "muted": "#8FA8C8",
+    "accent": "#FFD500",
+    "accent2": "#4FC3F7",
+    "grid": "#1A3150",
+    "red": "#FF6B6B"
+  },
+  "fonts": {
+    "cn": "微软雅黑",
+    "cn_title": "微软雅黑",
+    "en": "Arial",
+    "mono": "Consolas"
+  },
+  "sizes": {
+    "title": 40,
+    "cover_title": 44,
+    "cover_sub": 22,
+    "cover_date": 18,
+    "cover_body": 16,
+    "h1": 24,
+    "h2": 20,
+    "h3": 18,
+    "body": 18,
+    "tag": 14,
+    "footer": 12,
+    "stat-num": 44,
+    "stat-label": 14,
+    "ref": 9
+  },
+  "bullets": {
+    "l1": {
+      "char": "□",
+      "bullet_font": "Arial",
+      "mark_color": "4FC3F7",
+      "size": "h1",
+      "color": "text",
+      "bold": true,
+      "lvl": 0,
+      "marL": 228600
+    },
+    "l2": {
+      "char": "◇",
+      "bullet_font": "Arial",
+      "mark_color": "FFD500",
+      "size": "h2",
+      "color": "text",
+      "bold": true,
+      "lvl": 1,
+      "marL": 685800
+    },
+    "l3": {
+      "char": "→",
+      "bullet_font": "Arial",
+      "mark_color": "4FC3F7",
+      "size": "h3",
+      "color": "accent2",
+      "bold": true,
+      "lvl": 2,
+      "marL": 1143000
+    },
+    "l0": {
+      "size": "body",
+      "color": "text",
+      "bold": false,
+      "lvl": 3,
+      "marL": 1143000
+    }
+  },
+  "decor": {
+    "motif": "工程制图标注语言",
+    "forbidden": [
+      "阴影浮动卡片",
+      "彩色渐变",
+      "装饰色块"
+    ]
+  }
+}

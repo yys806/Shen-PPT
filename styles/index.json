@@ -1,0 +1,68 @@
+{
+  "scenarios": {
+    "s1-pku": {
+      "style": "pku-report",
+      "locked": true
+    },
+    "s2-course": {
+      "style": "course-showcase",
+      "locked": false
+    },
+    "s3-thesis": {
+      "style": "thesis-formal",
+      "locked": true
+    }
+  },
+  "styles": {
+    "pku-report": {
+      "path": "pku-report/style-spec.json",
+      "scenarios": [
+        "s1-pku"
+      ],
+      "display": "北大组会（楷体学术，中性灰蓝）"
+    },
+    "thesis-formal": {
+      "path": "thesis-formal/style-spec.json",
+      "scenarios": [
+        "s3-thesis"
+      ],
+      "display": "论文答辩（正式学术，深蓝衬线）"
+    },
+    "course-showcase": {
+      "path": "course-showcase/style-spec.json",
+      "scenarios": [
+        "s2-course"
+      ],
+      "display": "课程答辩（多变风格组）",
+      "children": [
+        "academic-clean",
+        "dark-engine",
+        "magazine-warm",
+        "dark-tech",
+        "blueprint",
+        "swiss-minimal"
+      ]
+    },
+    "dark-tech": {
+      "path": "dark-tech/style-spec.json",
+      "scenarios": [
+        "s2-course"
+      ],
+      "display": "Dark Tech（ppt-master 原生：暗色科技发光）"
+    },
+    "blueprint": {
+      "path": "blueprint/style-spec.json",
+      "scenarios": [
+        "s2-course"
+      ],
+      "display": "Blueprint（ppt-master 原生：工程蓝图）"
+    },
+    "swiss-minimal": {
+      "path": "swiss-minimal/style-spec.json",
+      "scenarios": [
+        "s2-course"
+      ],
+      "display": "Swiss Minimal（ppt-master 原生：瑞士极简）"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "name": "pku-report",
+  "display": "北大组会（北大模板规格：楷体+TNR，深蓝页标题，白底双线）",
+  "scenarios": [
+    "s1-pku"
+  ],
+  "skeleton": "report",
+  "palette": {
+    "base": "#FFFFFF",
+    "panel": "#F4F6FA",
+    "panel_dark": "#0A1B3F",
+    "line": "#C0C0C0",
+    "text": "#000000",
+    "muted": "#595959",
+    "accent": "#002B85",
+    "accent2": "#1E2761",
+    "grid": "#E5E9F0",
+    "red": "#C00000"
+  },
+  "fonts": {
+    "cn": "楷体",
+    "cn_title": "楷体",
+    "cn_cover": "方正小标宋简体",
+    "en": "Times New Roman",
+    "mono": "Consolas"
+  },
+  "sizes": {
+    "title": 40,
+    "cover_title": 38,
+    "cover_sub": 20,
+    "cover_date": 28,
+    "cover_body": 16,
+    "h1": 24,
+    "h2": 20,
+    "h3": 18,
+    "body": 18,
+    "tag": 14,
+    "footer": 12,
+    "stat-num": 44,
+    "stat-label": 14,
+    "ref": 9
+  },
+  "bullets": {
+    "l1": {
+      "char": "q",
+      "bullet_font": "Wingdings",
+      "mark_color": "A40503",
+      "size": "h1",
+      "color": "text",
+      "bold": true,
+      "lvl": 0,
+      "marL": 228600
+    },
+    "l2": {
+      "char": "v",
+      "bullet_font": "Wingdings",
+      "mark_color": "0432FF",
+      "size": "h2",
+      "color": "text",
+      "bold": true,
+      "lvl": 1,
+      "marL": 685800
+    },
+    "l3": {
+      "char": "Ø",
+      "bullet_font": "Wingdings",
+      "mark_color": "4F81BD",
+      "lum_mod": 60000,
+      "lum_off": 40000,
+      "size": "h3",
+      "color": "accent",
+      "bold": true,
+      "lvl": 2,
+      "marL": 1143000
+    },
+    "l0": {
+      "char": "",
+      "size": "body",
+      "color": "text",
+      "bold": false,
+      "lvl": 3,
+      "marL": 1143000
+    }
+  },
+  "decor": {
+    "motif": "白底 + 上下横线框定 + 深蓝楷体页标题",
+    "forbidden": [
+      "色条",
+      "侧边竖条",
+      "阴影浮动卡片",
+      "渐变背景",
+      "彩色装饰块"
+    ]
+  }
+}

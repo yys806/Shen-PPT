@@ -1,0 +1,437 @@
+{
+  "name": "report",
+  "canvas": {
+    "w": 1280,
+    "h": 720
+  },
+  "slides": {
+    "cover": {
+      "bg": {
+        "fill": "base"
+      },
+      "regions": {
+        "ruleTop": {
+          "x": 120,
+          "y": 218,
+          "w": 1040,
+          "h": 2,
+          "color": "text"
+        },
+        "date": {
+          "x": 160,
+          "y": 235,
+          "w": 960,
+          "h": 100,
+          "size": "cover_date",
+          "align": "center",
+          "color": "line"
+        },
+        "title": {
+          "x": 120,
+          "y": 328,
+          "w": 1062,
+          "h": 71,
+          "size": "cover_title",
+          "align": "center",
+          "bold": true
+        },
+        "subtitle": {
+          "x": 401,
+          "y": 402,
+          "w": 517,
+          "h": 42,
+          "size": "cover_sub",
+          "align": "center",
+          "bold": true,
+          "font": "cn"
+        },
+        "abstract": {
+          "x": 382,
+          "y": 449,
+          "w": 556,
+          "h": 112,
+          "size": "cover_body",
+          "align": "center",
+          "color": "line",
+          "font": "cn"
+        },
+        "ruleBottom": {
+          "x": 120,
+          "y": 573,
+          "w": 1040,
+          "h": 2,
+          "color": "text"
+        }
+      }
+    },
+    "toc": {
+      "bg": {
+        "fill": "base"
+      },
+      "regions": {
+        "header": {
+          "x": 88,
+          "y": 12,
+          "w": 1104,
+          "h": 90,
+          "size": "title",
+          "align": "center",
+          "color": "accent",
+          "bold": true
+        },
+        "rule": {
+          "x": 0,
+          "y": 80,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "rule2": {
+          "x": 0,
+          "y": 86,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "logo": {
+          "assets": [
+            {
+              "src": "pku/pku-seal.png",
+              "x": 1118,
+              "y": 1,
+              "w": 70,
+              "h": 70
+            },
+            {
+              "src": "pku/pcni-logo.png",
+              "x": 1199,
+              "y": 5,
+              "w": 66,
+              "h": 66
+            }
+          ]
+        },
+        "tocItems": {
+          "x": 88,
+          "y": 160,
+          "w": 1104,
+          "h": 460,
+          "size": "h2",
+          "align": "left"
+        },
+        "pageNum": {
+          "x": 1150,
+          "y": 667,
+          "w": 120,
+          "h": 38,
+          "size": "footer",
+          "align": "center",
+          "muted": true
+        },
+        "references": {
+          "x": 0,
+          "y": 720,
+          "w": 950,
+          "h": 60,
+          "size": "ref",
+          "align": "left",
+          "muted": true,
+          "anchor": "bottom-left"
+        }
+      }
+    },
+    "section": {
+      "bg": {
+        "fill": "base"
+      },
+      "regions": {
+        "header": {
+          "x": 88,
+          "y": 12,
+          "w": 1104,
+          "h": 90,
+          "size": "title",
+          "align": "center",
+          "color": "accent",
+          "bold": true
+        },
+        "rule": {
+          "x": 0,
+          "y": 80,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "rule2": {
+          "x": 0,
+          "y": 86,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "logo": {
+          "assets": [
+            {
+              "src": "pku/pku-seal.png",
+              "x": 1118,
+              "y": 1,
+              "w": 70,
+              "h": 70
+            },
+            {
+              "src": "pku/pcni-logo.png",
+              "x": 1199,
+              "y": 5,
+              "w": 66,
+              "h": 66
+            }
+          ]
+        },
+        "sectionTitle": {
+          "x": 88,
+          "y": 220,
+          "w": 1104,
+          "h": 110,
+          "size": "title",
+          "align": "center",
+          "bold": true
+        },
+        "sectionTagline": {
+          "x": 88,
+          "y": 340,
+          "w": 1104,
+          "h": 60,
+          "size": "h2",
+          "align": "center",
+          "muted": true
+        },
+        "pageNum": {
+          "x": 1150,
+          "y": 667,
+          "w": 120,
+          "h": 38,
+          "size": "footer",
+          "align": "center",
+          "muted": true
+        },
+        "references": {
+          "x": 0,
+          "y": 720,
+          "w": 950,
+          "h": 60,
+          "size": "ref",
+          "align": "left",
+          "muted": true,
+          "anchor": "bottom-left"
+        }
+      }
+    },
+    "content": {
+      "bg": {
+        "fill": "base"
+      },
+      "regions": {
+        "header": {
+          "x": 88,
+          "y": 12,
+          "w": 1104,
+          "h": 90,
+          "size": "title",
+          "align": "center",
+          "color": "accent",
+          "bold": true
+        },
+        "rule": {
+          "x": 0,
+          "y": 80,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "rule2": {
+          "x": 0,
+          "y": 86,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "logo": {
+          "assets": [
+            {
+              "src": "pku/pku-seal.png",
+              "x": 1118,
+              "y": 1,
+              "w": 70,
+              "h": 70
+            },
+            {
+              "src": "pku/pcni-logo.png",
+              "x": 1199,
+              "y": 5,
+              "w": 66,
+              "h": 66
+            }
+          ]
+        },
+        "body": {
+          "x": 60,
+          "y": 116,
+          "w": 1160,
+          "h": 500,
+          "size": "body",
+          "align": "left"
+        },
+        "image": {
+          "x": 700,
+          "y": 116,
+          "w": 520,
+          "h": 380,
+          "fit": "contain"
+        },
+        "caption": {
+          "x": 700,
+          "y": 506,
+          "w": 520,
+          "h": 50,
+          "size": "tag",
+          "align": "center",
+          "muted": true
+        },
+        "pageNum": {
+          "x": 1150,
+          "y": 667,
+          "w": 120,
+          "h": 38,
+          "size": "footer",
+          "align": "center",
+          "muted": true
+        },
+        "references": {
+          "x": 0,
+          "y": 720,
+          "w": 950,
+          "h": 60,
+          "size": "ref",
+          "align": "left",
+          "muted": true,
+          "anchor": "bottom-left"
+        }
+      }
+    },
+    "content-wide": {
+      "bg": {
+        "fill": "base"
+      },
+      "regions": {
+        "header": {
+          "x": 88,
+          "y": 12,
+          "w": 1104,
+          "h": 90,
+          "size": "title",
+          "align": "center",
+          "color": "accent",
+          "bold": true
+        },
+        "rule": {
+          "x": 0,
+          "y": 80,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "rule2": {
+          "x": 0,
+          "y": 86,
+          "w": 1280,
+          "h": 2,
+          "color": "accent"
+        },
+        "logo": {
+          "assets": [
+            {
+              "src": "pku/pku-seal.png",
+              "x": 1118,
+              "y": 1,
+              "w": 70,
+              "h": 70
+            },
+            {
+              "src": "pku/pcni-logo.png",
+              "x": 1199,
+              "y": 5,
+              "w": 66,
+              "h": 66
+            }
+          ]
+        },
+        "body": {
+          "x": 60,
+          "y": 116,
+          "w": 1160,
+          "h": 500,
+          "size": "body",
+          "align": "left"
+        },
+        "pageNum": {
+          "x": 1150,
+          "y": 667,
+          "w": 120,
+          "h": 38,
+          "size": "footer",
+          "align": "center",
+          "muted": true
+        },
+        "references": {
+          "x": 0,
+          "y": 720,
+          "w": 950,
+          "h": 60,
+          "size": "ref",
+          "align": "left",
+          "muted": true,
+          "anchor": "bottom-left"
+        }
+      }
+    },
+    "ending": {
+      "bg": {
+        "fill": "base"
+      },
+      "regions": {
+        "ruleTop": {
+          "x": 120,
+          "y": 218,
+          "w": 1040,
+          "h": 2,
+          "color": "text"
+        },
+        "thanks": {
+          "x": 120,
+          "y": 320,
+          "w": 1040,
+          "h": 110,
+          "size": "title",
+          "align": "center",
+          "bold": true
+        },
+        "thanksSub": {
+          "x": 120,
+          "y": 440,
+          "w": 1040,
+          "h": 60,
+          "size": "h2",
+          "align": "center",
+          "muted": true
+        },
+        "ruleBottom": {
+          "x": 120,
+          "y": 573,
+          "w": 1040,
+          "h": 2,
+          "color": "text"
+        }
+      }
+    }
+  }
+}

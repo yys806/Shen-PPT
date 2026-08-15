@@ -3,6 +3,7 @@
   [Parameter(Mandatory = $true)][string]$OutPptx,
   [string]$SkillRoot = '',
   [string]$PreviewDir = '',
+  [string]$Style = 'dark-engineering',
   [string]$LatexPptRoot = 'D:\shen\test\latex-ppt'
 )
 
@@ -46,11 +47,42 @@ $C = @{
   Amber = HexToRgb '#F2B84B'
   Blue = HexToRgb '#58C4D8'
   Dark = HexToRgb '#07100F'
+  Grid = HexToRgb '#0D1A17'
+}
+
+# ---- 风格系统：按 -Style 选择配色 ----
+$STYLES = @{
+  'dark-engineering' = @{
+    Base='#07100F'; Base2='#0A1513'; Panel='#0E1E1A'; PanelDark='#0C1D19'; Panel2='#132A24'
+    Line='#24443B'; Text='#EAF4EF'; Muted='#A4B7B0'; Amber='#F2B84B'; Blue='#58C4D8'; Dark='#07100F'; Grid='#0D1A17'
+  }
+  'research-blue' = @{
+    Base='#F4F7FB'; Base2='#EDF2F8'; Panel='#FFFFFF'; PanelDark='#E6EDF6'; Panel2='#D8E4F2'
+    Line='#B9C9DD'; Text='#1E293B'; Muted='#5A6B80'; Amber='#2563EB'; Blue='#2563EB'; Dark='#0F172A'; Grid='#DDE6F0'
+  }
+  'pku-report' = @{
+    Base='#FFFFFF'; Base2='#F7F8FA'; Panel='#FFFFFF'; PanelDark='#F0F2F5'; Panel2='#E8EBF0'
+    Line='#C8CDD4'; Text='#1F2328'; Muted='#5C6672'; Amber='#2F6FD0'; Blue='#2F6FD0'; Dark='#1F2328'; Grid='#E2E6EB'
+  }
+}
+if ($STYLES.ContainsKey($Style)) {
+  $S = $STYLES[$Style]
+  $C.Base = HexToRgb $S.Base; $C.Base2 = HexToRgb $S.Base2; $C.Panel = HexToRgb $S.Panel
+  $C.PanelDark = HexToRgb $S.PanelDark; $C.Panel2 = HexToRgb $S.Panel2; $C.Line = HexToRgb $S.Line
+  $C.Text = HexToRgb $S.Text; $C.Muted = HexToRgb $S.Muted; $C.Amber = HexToRgb $S.Amber
+  $C.Blue = HexToRgb $S.Blue; $C.Dark = HexToRgb $S.Dark; $C.Grid = HexToRgb $S.Grid
 }
 
 $FontTitle = 'Microsoft YaHei'
 $FontBody = [string]::Concat([char]0x65B9, [char]0x6B63, [char]0x5C0F, [char]0x6807, [char]0x5B8B, [char]0x7B80, [char]0x4F53)
 $FontNumber = 'Times New Roman'
+
+# ---- 北大专项：楷体 + Times New Roman（pku-report 风格）----
+if ($Style -eq 'pku-report') {
+  $FontTitle = [string]::Concat([char]0x6977, [char]0x4F53)   # 楷体
+  $FontBody  = [string]::Concat([char]0x6977, [char]0x4F53)   # 楷体
+  $FontNumber = 'Times New Roman'
+}
 
 function Set-TextBox($shape, [string]$text, [int]$fontSize, [int]$color, [string]$fontName, [bool]$bold = $false, [string]$align = 'left') {
   $shape.TextFrame2.TextRange.Text = $text
@@ -225,8 +257,8 @@ function Add-Background($slide) {
   $bg.Fill.ForeColor.RGB = $C.Base
   $bg.Line.Visible = $msoFalse
   $bg.ZOrder(1)
-  for ($x = 40; $x -lt 1280; $x += 80) { Add-Line $slide $x 0 $x 720 (HexToRgb '#0D1A17') 0.4 | Out-Null }
-  for ($y = 40; $y -lt 720; $y += 80) { Add-Line $slide 0 $y 1280 $y (HexToRgb '#0D1A17') 0.4 | Out-Null }
+  for ($x = 40; $x -lt 1280; $x += 80) { Add-Line $slide $x 0 $x 720 $C.Grid 0.4 | Out-Null }
+  for ($y = 40; $y -lt 720; $y += 80) { Add-Line $slide 0 $y 1280 $y $C.Grid 0.4 | Out-Null }
   $top = $slide.Shapes.AddShape($msoShapeRectangle, 0, 0, (ToPt 1280), (ToPt 4))
   $top.Fill.ForeColor.RGB = $C.Amber
   $top.Line.Visible = $msoFalse
@@ -268,7 +300,7 @@ function Add-Chrome($slide, $card, $sections) {
   Add-Nav $slide $card.section $sections
   Add-Line $slide 54 100 1226 100 $C.Line 1.4 | Out-Null
   Add-Line $slide 54 670 1226 670 $C.Line 1.4 | Out-Null
-  Add-Text $slide 54 684 720 18 'DRIFT论文中文讲解' 10 $C.Muted $FontNumber | Out-Null
+  Add-Text $slide 54 684 720 18 $script:cardsData.deckTitle 10 $C.Muted $FontNumber | Out-Null
   Add-Text $slide 1182 676 44 24 ([string]$card.slideNo).PadLeft(2,'0') 14 $C.Amber $FontNumber $false 'right' | Out-Null
 }
 
@@ -332,19 +364,21 @@ function Add-Cover($slide, $card) {
   $bar = $slide.Shapes.AddShape($msoShapeRectangle, (ToPt 54), (ToPt 86), (ToPt 84), (ToPt 6))
   $bar.Fill.ForeColor.RGB = $C.Amber
   $bar.Line.Visible = $msoFalse
-  Add-Text $slide 54 116 460 30 '论文中文讲解' 22 $C.Amber $FontBody | Out-Null
-  Add-Text $slide 54 160 560 70 'DRIFT' 64 $C.Text $FontTitle $true | Out-Null
-  Add-Text $slide 54 242 560 112 '风险约束扩散模型' 44 $C.Text $FontTitle $true | Out-Null
-  Add-Text $slide 54 322 520 72 '与模仿先验' 44 $C.Text $FontTitle $true | Out-Null
-  Add-Text $slide 58 430 560 72 'Risk-Constrained Diffusion with Imitation Priors for Mixed Autonomy Traffic Generation' 21 $C.Muted $FontNumber | Out-Null
+  Add-Text $slide 54 116 460 30 '学术汇报' 22 $C.Amber $FontBody | Out-Null
+  $titleLines = ([string]$card.title).Split("`n")
+  Add-Text $slide 54 160 620 110 $titleLines[0] 48 $C.Text $FontTitle $true | Out-Null
+  if ($titleLines.Count -gt 1) {
+    Add-Text $slide 54 260 620 80 $titleLines[1] 36 $C.Text $FontTitle $true | Out-Null
+  }
+  Add-Text $slide 54 390 620 90 $card.subtitle 22 $C.Muted $FontBody | Out-Null
+  Add-Text $slide 54 500 620 60 $card.claim 17 $C.Muted $FontBody | Out-Null
   if ([string]$card.visualAsset -and [string]$card.visualAsset -ne 'none') {
     Add-FigureBlock $slide ([string]$card.visualAsset) ([string]$card.caption) 700 92 470 420
   } else {
     Add-Panel $slide 720 110 420 420 $C.PanelDark $C.Line 1.2 | Out-Null
-    Add-Icon $slide 'route' 790 174 76 | Out-Null
-    Add-Icon $slide 'shield' 930 174 76 | Out-Null
-    Add-Icon $slide 'algorithm' 860 310 76 | Out-Null
-    Add-Text $slide 760 468 340 70 '扩散生成 · 风险约束`n混合自治交通' 25 $C.Text $FontBody $false 'center' | Out-Null
+    Add-Icon $slide $card.icon 790 174 76 | Out-Null
+    $coverBody = @($card.body | Select-Object -First 3) -join "`n"
+    Add-Text $slide 760 320 340 160 $coverBody 22 $C.Text $FontBody $false 'center' | Out-Null
   }
 }
 
@@ -439,6 +473,21 @@ function Add-Body($slide, $card, $sections) {
     if ($card.tables.Count -gt 0) {
       Add-Table $slide 84 444 660 140 $card.tables[0]
     }
+  } elseif ($layout -eq 'comparison matrix') {
+    Add-Panel $slide 80 128 520 300 $C.PanelDark $C.Line 1.2 | Out-Null
+    Add-Icon $slide $card.icon 112 160 48 | Out-Null
+    Add-Text $slide 184 156 360 40 $card.subtitle 24 $C.Text $FontTitle $true | Out-Null
+    Add-Text $slide 112 232 430 180 $card.claim 17 $C.Muted $FontBody | Out-Null
+    Add-Panel $slide 640 128 540 300 $C.Panel $C.Line 1 | Out-Null
+    if ($card.latex.Count -gt 0) {
+      Add-CompactBullets $slide 680 152 460 96 $card.body 13 3
+      Add-LatexRows $slide $card.latex 680 260 460 140 3
+    } else {
+      Add-Bullets $slide 684 160 450 100 $card.body 15
+    }
+    if ($card.tables.Count -gt 0) {
+      Add-Table $slide 84 448 1096 200 $card.tables[0]
+    }
   } else {
     if ([string]$card.visualAsset -and [string]$card.visualAsset -ne 'none') {
       Add-FigureBlock $slide ([string]$card.visualAsset) ([string]$card.caption) 70 128 560 456
@@ -461,7 +510,7 @@ function Add-Thanks($slide, $card) {
   Add-Background $slide
   $bar = $slide.Shapes.AddShape($msoShapeRectangle, (ToPt 520), (ToPt 94), (ToPt 240), (ToPt 6))
   $bar.Fill.ForeColor.RGB = $C.Amber; $bar.Line.Visible = $msoFalse
-  Add-Text $slide 150 138 980 56 'DRIFT论文中文讲解' 36 $C.Text $FontTitle $true 'center' | Out-Null
+  Add-Text $slide 150 138 980 56 $script:cardsData.deckTitle 36 $C.Text $FontTitle $true 'center' | Out-Null
   Add-Line $slide 54 220 1226 220 $C.Line 1.4 | Out-Null
   Add-Text $slide 90 286 1100 96 '感谢聆听' 72 $C.Text $FontTitle $true 'center' | Out-Null
   Add-Text $slide 390 472 500 44 '请老师和同学批评指正' 32 $C.Muted $FontBody $false 'center' | Out-Null

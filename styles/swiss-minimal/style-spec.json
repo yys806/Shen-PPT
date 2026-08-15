@@ -1,0 +1,98 @@
+{
+  "name": "swiss-minimal",
+  "display": "Swiss Minimal（ppt-master 原生：瑞士极简）",
+  "scenarios": [
+    "s2-course"
+  ],
+  "skeleton": "defense",
+  "palette": {
+    "base": "#FFFFFF",
+    "panel": "#F4F4F2",
+    "panel_dark": "#0A0A0A",
+    "line": "#D0D0CE",
+    "text": "#1A1A1A",
+    "muted": "#888885",
+    "accent": "#002FA7",
+    "accent2": "#0055D4",
+    "grid": "#E8E8E5",
+    "red": "#E00000"
+  },
+  "fonts": {
+    "cn": "微软雅黑",
+    "cn_title": "微软雅黑",
+    "en": "Arial",
+    "mono": "Consolas"
+  },
+  "sizes": {
+    "title": 40,
+    "cover_title": 44,
+    "cover_sub": 22,
+    "cover_date": 18,
+    "cover_body": 16,
+    "h1": 24,
+    "h2": 20,
+    "h3": 18,
+    "body": 18,
+    "tag": 14,
+    "footer": 12,
+    "stat-num": 44,
+    "stat-label": 14,
+    "ref": 9
+  },
+  "bullets": {
+    "l1": {
+      "char": "□",
+      "bullet_font": "Arial",
+      "mark_color": "002FA7",
+      "size": "h1",
+      "color": "text",
+      "bold": true,
+      "lvl": 0,
+      "marL": 228600
+    },
+    "l2": {
+      "char": "◆",
+      "bullet_font": "Arial",
+      "mark_color": "002FA7",
+      "size": "h2",
+      "color": "text",
+      "bold": true,
+      "lvl": 1,
+      "marL": 685800
+    },
+    "l3": {
+      "char": "➢",
+      "bullet_font": "Arial",
+      "mark_color": "0055D4",
+      "size": "h3",
+      "color": "accent",
+      "bold": true,
+      "lvl": 2,
+      "marL": 1143000
+    },
+    "l0": {
+      "size": "body",
+      "color": "text",
+      "bold": false,
+      "lvl": 3,
+      "marL": 1143000
+    }
+  },
+  "decor": {
+    "motif": "网格与留白",
+    "forbidden": [
+      "阴影",
+      "渐变",
+      "装饰色块",
+      "贴图"
+    ]
+  },
+  "skeleton_overrides": {
+    "cover": {
+      "bg": {
+        "fill": "base",
+        "topAccent": true
+      }
+    }
+  }
+}

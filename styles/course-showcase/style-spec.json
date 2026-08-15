@@ -1,0 +1,14 @@
+{
+  "name": "course-showcase",
+  "display": "课程答辩（多变风格组）",
+  "scenarios": [
+    "s2-course"
+  ],
+  "skeleton": "defense",
+  "children": [
+    "academic-clean",
+    "dark-engine",
+    "magazine-warm"
+  ],
+  "note": "容器风格：渲染时从 children 选一个，本 spec 不直接渲染"
+}

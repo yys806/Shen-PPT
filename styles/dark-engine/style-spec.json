@@ -1,0 +1,42 @@
+{
+  "name": "dark-engine",
+  "display": "深色工程（深底亮橙）",
+  "scenarios": [
+    "s2-course"
+  ],
+  "skeleton": "defense",
+  "palette": {
+    "base": "#0E1420",
+    "panel": "#161E2E",
+    "panel_dark": "#0A0F18",
+    "line": "#2A3650",
+    "text": "#E8EDF5",
+    "muted": "#8A97AB",
+    "accent": "#FF6B35",
+    "accent2": "#3D8BFF",
+    "grid": "#1F2A40"
+  },
+  "fonts": {
+    "cn": "微软雅黑",
+    "cn_title": "微软雅黑",
+    "en": "Inter",
+    "mono": "Consolas"
+  },
+  "sizes": {
+    "title": 42,
+    "h1": 26,
+    "h2": 22,
+    "body": 20,
+    "tag": 14,
+    "footer": 12,
+    "stat-num": 48,
+    "stat-label": 14
+  },
+  "decor": {
+    "motif": "网格底+高亮橙",
+    "forbidden": [
+      "白底默认",
+      "柔和粉彩"
+    ]
+  }
+}

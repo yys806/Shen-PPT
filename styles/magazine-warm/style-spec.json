@@ -1,0 +1,42 @@
+{
+  "name": "magazine-warm",
+  "display": "暖色杂志（米白暖棕）",
+  "scenarios": [
+    "s2-course"
+  ],
+  "skeleton": "defense",
+  "palette": {
+    "base": "#FAF6EF",
+    "panel": "#F2E9DC",
+    "panel_dark": "#E8DCCB",
+    "line": "#D8C8B2",
+    "text": "#2A2118",
+    "muted": "#7A6A58",
+    "accent": "#B85C38",
+    "accent2": "#6B4A2B",
+    "grid": "#E5D9C8"
+  },
+  "fonts": {
+    "cn": "宋体",
+    "cn_title": "方正小标宋简体",
+    "en": "Georgia",
+    "mono": "Consolas"
+  },
+  "sizes": {
+    "title": 40,
+    "h1": 26,
+    "h2": 22,
+    "body": 20,
+    "tag": 14,
+    "footer": 12,
+    "stat-num": 46,
+    "stat-label": 14
+  },
+  "decor": {
+    "motif": "衬线标题+暖色块",
+    "forbidden": [
+      "冷色科技蓝",
+      "霓虹"
+    ]
+  }
+}
