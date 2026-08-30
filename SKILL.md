@@ -1,7 +1,7 @@
 ---
 name: shen-ppt
 description: "Use when 做PPT/答辩/组会/汇报/科普. 场景路由：S1组会/S2课程/S3论文走PPTX引擎，S4日常走HTML。"
-version: 4.0.0
+version: 4.1.0
 metadata:
   hermes:
     tags: [ppt, powerpoint, presentation, slides, chinese, deck-spec, python-pptx, codex]
@@ -9,7 +9,7 @@ metadata:
     related_skills: [docx, xlsx, pdf, powerpoint]
 ---
 
-# Shen-PPT（神了PPT）v4：S1-S4 场景路由 + 双管道
+# Shen-PPT（神了PPT）v4.1：S1-S4 场景路由 + 双管道
 
 触发词：**做PPT、组会汇报、答辩PPT、论文答辩、课程大作业、介绍一下XX、做个科普、演示文稿**。
 
@@ -89,7 +89,12 @@ python <SKILL_ROOT>/scripts/render_pptx.py \
 ```bash
 python <SKILL_ROOT>/scripts/export_preview.py <输出.pptx> <预览目录>
 ```
-导出每页 PNG → 视觉检查：文字溢出/重叠、章节标识完整、页码正确、位置协调。发现问题 → 改 spec 或骨架 → 重渲染。
+导出每页 PNG → **按 `references/quality-gates.md` 逐项核对**（v4.1 起强制）：
+1. **内容保真**：spec 承诺的要素（标题/要点/表格/图片/统计卡/章节归属/页码）逐页对实际页面 → 缺失必须有理由（Absence needs a reason）
+2. **视觉检查**：文字溢出/重叠、章节标识完整、页码正确、位置协调
+3. **图放大警告**：渲染日志里 ⚠️ 图片放大 ≥2x 的 → 换高分辨率图或注明接受
+4. **最终复查**：页数=spec 页数、目录=章节数、页码连续、三件套就位
+发现问题 → 改 spec 或骨架 → 重渲染 → 再核对，直到复查通过。
 
 ### Step 8 · 交付
 三件套：**PPTX + 讲稿.md + 问答.md**（后两者按需）。
@@ -140,6 +145,7 @@ shen-ppt/
 ├── LICENSE                     # MIT
 ├── references/                 # 模板库 + 规格文档
 │   ├── deck-spec.md            # 内容单源 schema 全表
+│   ├── quality-gates.md        # ⭐ v4.1 质量门禁（内容保真/图放大警告/文本校准/最终复查）
 │   ├── layout-skeletons.md     # 版式骨架系统说明
 │   ├── style-library.md        # 风格资产库索引
 │   ├── template-specs.md       # ⭐ S1 北大精确参数
@@ -159,7 +165,7 @@ shen-ppt/
 
 ## 外部依赖（S2/S4 管线）
 
-- **S2 ppt-master 官方管线**：`ppt-master` 仓库（18 视觉风格/20 品牌模板/21 官方示例/34 图表），本地 clone 于 `ppt-refs/ppt-master/`，上游 https://github.com/ 官方仓库
+- **S2 ppt-master 官方管线**：`ppt-master` 仓库（18 视觉风格/20 品牌模板/21 官方示例/34 图表），本地 clone 于 `ppt-refs/ppt-master/`，上游 https://github.com/ 官方仓库；**上游 v6.1.0（2026-08-30）prompt 体系大重构（Executor 三层拆分/内容保真校验/图放大警告/文本校准）已评估，质量机制吸收进本 skill 的 `references/quality-gates.md`，官方管线调用方式不变**
 - **S4 HTML 演示**：`guizang-ppt-skill`（默认）+ `frontend-slides`（备选），本地 clone 于 `ppt-refs/`，每周检查上游更新
 
 ## 安装
@@ -181,6 +187,13 @@ git clone <ppt-master上游> && git clone <guizang-ppt-skill上游> && git clone
 - 公式：python-pptx 无原生公式。需要真公式时按需调用 ppt-master 的 `native-formula.md` 流程（latex → OMML），或图片形式插入
 - 图片区域：图片按区域等比 fit，不裁切；需要精确裁切先预处理
 - 修改已有 PPTX：看（export_preview 导出）→ 诊断（视觉）→ 改（python-pptx 纯文件操作）→ 验证（再导出对比）。⚠️ PowerPoint 单实例冲突：操作前先确认用户是否在用 PPT
+
+## 版本历史
+
+- **v4.1.0（2026-08-30）**：吸收 ppt-master 上游 v6.1.0 质量机制 —— 新增 `references/quality-gates.md`（内容保真核对 + Absence needs a reason + 图放大警告 + 文本宽度校准 + 每页语义唯一归属 + 最终复查检查点）；`render_pptx.py` 图片放大 ≥2x 自动警告；Step 7 QA 升级为逐项门禁核对
+- **v4.0.0（2026-08-16）**：S1-S4 场景路由 + 双管道（PPTX/HTML），deck-spec 内容单源
+- **v3.x（2026-07）**：原版固定管道（Assembly Line 10 阶段）
+- **v2.x（2026-06）**：15 套可编辑模板 + 原版引擎
 
 ## License
 

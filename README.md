@@ -27,7 +27,9 @@
   <a href="#validation">Validation</a>
 </p>
 
-Shen-PPT v4 is an agent skill for Chinese academic presentations, course defenses, thesis defenses, engineering project reports and daily shareable decks. It routes every request to one of four production pipelines (S1-S4), reads user-provided reports, code folders, screenshots, charts, experiment results, and reference materials, then generates **real editable PPTX files** (or HTML decks for sharing) through deterministic engines.
+Shen-PPT v4.1 is an agent skill for Chinese academic presentations, course defenses, thesis defenses, engineering project reports and daily shareable decks. It routes every request to one of four production pipelines (S1-S4), reads user-provided reports, code folders, screenshots, charts, experiment results, and reference materials, then generates **real editable PPTX files** (or HTML decks for sharing) through deterministic engines.
+
+> **v4.1.0 (2026-08-30)** — Quality gates absorbed from ppt-master upstream v6.1.0: content-fidelity review (absence needs a reason), image upscale warning at ≥2x (engine-enforced), text-width calibration, single page-semantics ownership, and a final review checkpoint. See [`references/quality-gates.md`](references/quality-gates.md).
 
 Its goal is not to create slide-looking images. Its goal is to produce real PPTX files where text, icons, shapes, flowcharts, tables, screenshots, and images remain editable or independently replaceable whenever practical.
 

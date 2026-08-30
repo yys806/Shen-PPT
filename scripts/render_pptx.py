@@ -150,6 +150,24 @@ def validate_spec(spec):
 
 # ---------- 渲染 ----------
 
+def check_image_upscale(img_path, region):
+    """图放大检测（v4.1.0，吸收 ppt-master v6.1.0 'image upscale warning at 2x'）。
+    任一方向显示尺寸 ≥ 源图 2 倍 → 返回警告文案；否则返回 None。"""
+    try:
+        from PIL import Image as PILImage
+        iw, ih = PILImage.open(img_path).size
+    except Exception:
+        return None
+    if not iw or not ih:
+        return None
+    w, h = region["w"], region["h"]
+    up = max(w / iw, h / ih)
+    if up >= 2.0:
+        return (f"图片将被放大（区域 {w}x{h} px vs 源图 {iw}x{ih} px，max ≈{up:.1f}x）："
+                f"{img_path}，建议换更高分辨率图（QA 时确认可接受）")
+    return None
+
+
 class Renderer:
     def __init__(self, spec, style, skeleton):
         self.spec = spec
@@ -397,6 +415,10 @@ class Renderer:
         except Exception:
             iw, ih = 1600, 900
         scale = min(w / iw, h / ih)
+        # v4.1.0 图放大警告（吸收 ppt-master v6.1.0）：任一方向显示尺寸 ≥ 源图 2x → 提示换高分辨率图
+        up_warn = check_image_upscale(img_path, region)
+        if up_warn:
+            warn(up_warn)
         dw, dh = iw * scale, ih * scale
         dx = x + (w - dw) / 2
         dy = y + (h - dh) / 2
